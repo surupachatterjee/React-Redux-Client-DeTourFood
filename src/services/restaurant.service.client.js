@@ -25,7 +25,8 @@ class RestaurantService{
                     +"&lat="+response.latitude
                     +"&lon="+response.longitude
                     +"&entity_id="+response.entity_id
-                    +"&sort=rating",{
+                    +"&sort=rating"
+                    +"&count=150",{
                     headers:{
                         Accept: 'application/json',
                         userKey: ''//key value here
