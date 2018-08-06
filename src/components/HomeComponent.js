@@ -7,6 +7,7 @@ class HomeComponent extends React.PureComponent {
         return(
             <div>
                 <div>
+                    <br/>
                     <img src={require("../images/HomeImage3.jpg")}/>
                 </div>
             </div>

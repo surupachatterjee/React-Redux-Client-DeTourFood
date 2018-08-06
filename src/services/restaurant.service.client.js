@@ -5,11 +5,21 @@ var cityDetails;
 
 class RestaurantService{
 
+    constructor(singletonToken) {
+        if (_singleton !== singletonToken)
+            throw new Error('Singleton!!!');
+    }
+    static get instance() {
+        if(!this[_singleton])
+            this[_singleton] = new RestaurantService(_singleton);
+        return this[_singleton]
+    }
+
     findLocationDetailsByCity(cityName){
        return fetch(RESTAURANT_URL + "/locations?query=" + cityName,{
            headers:{
                Accept: 'application/json',
-               userKey: ''//key value here
+               userKey: '8f387705dbb342d6fe530909e541b0dd'//key value here
            }
        }).then(function (response) {
            console.log(response);
