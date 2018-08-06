@@ -1,11 +1,7 @@
 import * as constants from '../constants';
 
 let initialState = {
-    restaurants: [
-        {id: 1, name: 'Shankar Sagar'},
-        {id: 2, name: 'Shiv Sagar'},
-        {id: 3, name: 'abcd'}
-    ]
+    restaurants: []
 };
 
 const RestaurantReducer = (state=initialState, action) => {

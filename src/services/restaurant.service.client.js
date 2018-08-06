@@ -1,20 +1,8 @@
-
-
 const RESTAURANT_URL ="https://developers.zomato.com/api/v2.1";
 var cityDetails;
 
 let _singleton = Symbol();
 class RestaurantService{
-    constructor(singletonToken) {
-        if (_singleton !== singletonToken)
-            throw new Error('Singleton!!!');
-    }
-    static get instance() {
-        if(!this[_singleton])
-            this[_singleton] = new RestaurantService(_singleton);
-        return this[_singleton]
-    }
-
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Singleton!!!');
@@ -54,10 +42,13 @@ class RestaurantService{
                         'Accept': 'application/json',
                         'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
                     }
-                }).then(function (response) {
-                    return response.json();
                 })
-            })
+            }).then(function (response) {
+            console.log(response);
+            return response.json();
+        }).then(restaurants => {
+            return restaurants;
+        })
     }
 
    /* findRestaurantsByLoc(fetchedLoc,cityName){

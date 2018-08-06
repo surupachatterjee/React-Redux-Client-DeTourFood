@@ -5,14 +5,15 @@ class SearchComponent extends React.PureComponent {
     render() {
         return (
             <div>
-                {this.props.restaurants.map(restaurant => {
-                    let imageUrl="https://picsum.photos/801/180?image=" + restaurant.id * 10
+                <h1>Search Results</h1>
+                {this.props.restaurants.restaurants && this.props.restaurants.restaurants.map(restaurant => {
+                    console.log(restaurant);
                     return (
-                        <div className="card" key={restaurant.id}>
-                            <div className="card-body">
-                                <h4 className="card-title">Restaurant Name: {restaurant.name}</h4>
+                        <div className="card" key={restaurant.restaurant.id}>
+                            <div className="card-body" key={restaurant.restaurant.id}>
+                                <h4 className="card-title">Restaurant Name: {restaurant.restaurant.name}</h4>
+                                <h4 className="card-title">Cuisines: {restaurant.restaurant.cuisines}</h4>
                             </div>
-                            <img className="card-img-bottom" src={imageUrl} alt="Card image cap"/>
                         </div>
                     );
                 })}
