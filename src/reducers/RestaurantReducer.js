@@ -2,13 +2,13 @@ import * as constants from '../constants';
 
 let initialState = {
     restaurants: [
-        {name: 'Shankar Sagar'},
-        {name: 'Shiv Sagar'},
-        {name: 'abcd'}
+        {id: 1, name: 'Shankar Sagar'},
+        {id: 2, name: 'Shiv Sagar'},
+        {id: 3, name: 'abcd'}
     ]
 };
 
-export const RestaurantReducer = (state=initialState, action) => {
+const RestaurantReducer = (state=initialState, action) => {
     switch (action.type) {
         case constants.FIND_LOCATION_DETAILS_BY_CITY:
             return {
@@ -18,3 +18,5 @@ export const RestaurantReducer = (state=initialState, action) => {
         default: return state
     }
 }
+
+export default RestaurantReducer;

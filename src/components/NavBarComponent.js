@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class NavBarComponent extends React.PureComponent {
 
     render() {
