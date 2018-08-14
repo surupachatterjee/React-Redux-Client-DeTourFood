@@ -1,33 +1,37 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import MenuContainer from "../containers/MenuContainer";
 
 class RestaurantComponent extends React.PureComponent {
 
     render() {
+
         return (
-            <div className={"container"}>
-                <h3>Found {this.props.restaurants.length} Search Results</h3>
-                <div className={"row"}>
-                    {this.props.restaurants && this.props.restaurants.map(obj => {
-                        let restaurant = obj.restaurant;
+            <div>
+                {this.props.restaurants && this.props.restaurants.map(obj => {
+                    let restaurant = obj.restaurant;
+                    if (this.props.restaurantId === restaurant.id)
+                    {
+                        let loc = restaurant.location;
                         return (
-                            <div className={"col-6"} key={restaurant.id}>
-                                <div className="card">
-                                    <img className="card-img-top" src={restaurant.featured_image} alt="Card image cap"/>
-                                    <div className="card-body">
-                                        <h4 className="card-title">{restaurant.name}</h4>
-                                        <h5 className="card-text"> Cuisines: {restaurant.cuisines} </h5>
-                                        <Link to={`/restaurant`}>
-                                            <button className="btn btn-outline-warning btn-block" type={"button"}>
-                                                Order Now
-                                            </button>
-                                        </Link>
+                            <div className={"container"} key={"restaurant.id"}>
+                                <div className={"row"}>
+                                    <div className={"col-sm-5"}>
+                                        <h3>{restaurant.name}</h3>
+                                        <img src={restaurant.featured_image}/>
+                                        <h5>Cuisines: {restaurant.cuisines}</h5>
+                                        <h5>Average Cost for Two: {restaurant.average_cost_for_two}</h5>
+                                        <h5>Location</h5>
+                                        <h6>{loc.address}</h6>
+                                    </div>
+                                    <div className={"col-sm-7"}>
+                                        <MenuContainer restaurantId={restaurant.id}/>
                                     </div>
                                 </div>
                             </div>
                         );
-                    })}
-                </div>
+                    }
+                })}
             </div>
         )
     }
