@@ -1,8 +1,11 @@
 import {combineReducers} from 'redux';
 import RestaurantReducer from "./RestaurantReducer";
+import UserReducer from './UserReducer';
 
 const RootReducer = combineReducers({
-    RestaurantReducer
+    RestaurantReducer,
+    UserReducer
+
 });
 
 export default RootReducer;

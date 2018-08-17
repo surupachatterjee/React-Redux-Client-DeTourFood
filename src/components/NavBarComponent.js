@@ -5,6 +5,7 @@ class NavBarComponent extends React.PureComponent {
 
     render() {
         let location;
+        console.log("login value" + this.props.loggedIn);
         return(
             <div>
                 <div>
@@ -19,17 +20,27 @@ class NavBarComponent extends React.PureComponent {
                             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                                 <li className="nav-item active">
                                     <a className="nav-link"
-                                       href="#">
+                                       href="/home">
                                         Home
                                         <span className="sr-only">
                                             (current)
                                         </span>
                                     </a>
                                 </li>
+                                {!this.props.loggedIn &&
                                 <li className="nav-item">
                                     <a className="nav-link"
-                                       href="#">Login</a>
-                                </li>
+                                       href="/login">Login</a>
+                                </li>}
+                                {this.props.loggedIn &&
+                                <li className="nav-item nav-link">
+                                    <a href='#' onClick={() => this.props.visitProfile()}> LoggedIn As:{this.props.user.username}</a>
+                                </li>}
+
+                                {this.props.loggedIn &&
+                                <li className="nav-item nav-link">
+                                    <a href='#' onClick={() =>this.props.logout()}>Logout</a>
+                                </li>}
                             </ul>
                             <form className="form-inline my-2 my-lg-0">
                                 <input className="form-control mr-sm-2 input-lg"
