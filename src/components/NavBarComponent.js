@@ -32,6 +32,11 @@ class NavBarComponent extends React.PureComponent {
                                     <a className="nav-link"
                                        href="/login">Login</a>
                                 </li>}
+                                {!this.props.loggedIn &&
+                                <li className="nav-item">
+                                    <a className="nav-link"
+                                       href="/registerUser">Register</a>
+                                </li>}
                                 {this.props.loggedIn &&
                                 <li className="nav-item nav-link">
                                     <a href='#' onClick={() => this.props.visitProfile()}> LoggedIn As:{this.props.user.username}</a>

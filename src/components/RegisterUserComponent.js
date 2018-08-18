@@ -1,5 +1,6 @@
 import React from 'react';
 import RegisterCSS from '../styles/RegisterUserComponent.css'
+import swal from '../../node_modules/sweetalert'
 
 class RegisterUserComponent extends React.PureComponent {
 
@@ -13,7 +14,7 @@ class RegisterUserComponent extends React.PureComponent {
                 <div className="form-group row">
                     <div className="col-sm-3"/>
                     <div className="container-fluid col-sm-6">
-                        <h1 style={{"color" :"white"}}>Sign Up</h1>
+                        <h1 style={{"color": "white"}}>Sign Up</h1>
                         <div className="form-group row"/>
                         <div className="form-group row">
                             <label htmlFor="usernameFld" className="col-sm-2 col-form-label">
@@ -62,9 +63,18 @@ class RegisterUserComponent extends React.PureComponent {
                                                 username: this.username.value,
                                                 password: this.password.value
                                             };
-                                            if (this.password.value === this.verifyPassword.value) {
+                                            if (this.username.value === '') {
+                                                swal("Register Error", "Enter username", "error");
+                                            } else if (this.password.value === '') {
+                                                swal("Register Error", "Enter password", "error");
+                                            } else if (this.verifyPassword.value === '') {
+                                                swal("Register Error", "Re-Enter password to verify ", "error");
+                                            } else{
+                                                if (this.password.value === this.verifyPassword.value) {
                                                 console.log('User Name' + user.username);
-                                                this.props.createUser(user);
+                                                this.props.createUser(user);}
+                                                else
+                                                    swal("Register Error", "Passwords Don't Match ", "error");
                                             }
                                         }}>
                                     Sign Up

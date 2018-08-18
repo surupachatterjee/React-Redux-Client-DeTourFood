@@ -44,9 +44,19 @@ class UserService {
     }
 
 
-    findUserByUsername(username){
+    /*findUserByUsername(username){
         return fetch(constants.USER_URL +"/" +username)
             .then(response => response.json());
+    }*/
+
+    findUserByUsername(username){
+        return fetch(constants.USER_URL +"/"+username,{
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(response =>response.json());
     }
 }
 
