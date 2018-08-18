@@ -239,7 +239,8 @@ class RegisterRestaurantComponent extends React.PureComponent {
                                                 creationDate:new Date(),
                                                 email: this.email.value,
                                                 phone: this.phone.value,
-                                                addresses :[restAddr]
+                                                addresses :[restAddr],
+                                                zomatoRest: {}
                                                 };
                                             this.props.createRestUser(user)
                                         }}

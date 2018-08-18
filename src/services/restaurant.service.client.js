@@ -1,87 +1,133 @@
 import * as constants from '../constants'
 
-const RESTAURANT_URL ="https://developers.zomato.com/api/v2.1";
+const RESTAURANT_URL = "https://developers.zomato.com/api/v2.1";
 
 
 var cityDetails;
 
 let _singleton = Symbol();
-class RestaurantService{
+
+class RestaurantService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Singleton!!!');
     }
+
     static get instance() {
-        if(!this[_singleton])
+        if (!this[_singleton])
             this[_singleton] = new RestaurantService(_singleton);
         return this[_singleton]
     }
 
     createRestUser(user) {
-        return fetch(constants.LOCAL_RESTAURANT_URL,{
-            method:'post',
-            body:JSON.stringify(user),
-            headers:{
-                'content-type':'application/json'
-            }
-        }).then(response => response.json());
-
-    }
-
-
-    findLocationDetailsByCity(cityName){
-       return fetch(RESTAURANT_URL + "/locations?query=" + cityName,{
-           headers:{
-
-               'Accept': 'application/json',
-               'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
-           }
-       }).then(function (response) {
-           console.log(response);
-           return response.json();
-       })
-    }
-
-
-    findAllRestaurants(cityName){
-        this.findLocationDetailsByCity(cityName)
-            .then(function (response) {
-                let fetchedLoc = response.location_suggestions[0];
-                console.log(fetchedLoc);
-                return fetch(RESTAURANT_URL + "/search?q="+cityName
-                    +"&lat="+fetchedLoc.latitude
-                    +"&lon="+fetchedLoc.longitude
-                    +"&entity_id="+fetchedLoc.entity_id
-                    +"&sort=rating"
-                    +"&count=150",{
-                    headers:{
-                        'Accept': 'application/json',
-                        'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
+        return this.findLocationDetailsByCity(
+            user.addresses[0].city + " " +
+            user.addresses[0].zip + " " +
+            user.addresses[0].country
+        ).then(function (loc) {
+            return RestaurantService.instance.fetchZomatoRestaurants(user.addresses[0].addressName, loc.location_suggestions[0])
+                .then(function (rest) {
+                    let restLoc = {
+                        ...rest[0].restaurant.location,
+                        addressName: user.addresses[0].addressName,
+                        state: user.addresses[0].state,
+                        country: user.addresses[0].country
                     }
-                })
-            }).then(function (response) {
-            console.log(response);
-            return response.json();
-        }).then(restaurants => {
-            return restaurants;
+                    user = {
+                        ...user,
+                        addresses: [restLoc],
+                        zomatoRest: rest[0]
+                    }
+
+                    return fetch(constants.LOCAL_RESTAURANT_URL, {
+                        method: 'post',
+                        body: JSON.stringify(user),
+                        headers: {
+                            'content-type': 'application/json'
+                        }
+                    }).then(response => response.json());
+                });
         })
+
+
     }
 
-   /* findRestaurantsByLoc(fetchedLoc,cityName){
-        return fetch(RESTAURANT_URL + "/search?q="+cityName
-            +"&lat="+fetchedLoc.latitude
-            +"&lon="+fetchedLoc.longitude
-            +"&entity_id="+fetchedLoc.entity_id
-            +"&sort=rating"
-            +"&count=150",{
-            headers:{
+    fetchZomatoRestaurants(name, fetchedLoc) {
+        return fetch(RESTAURANT_URL + "/search?q=" + name.trim().replace(' ', '')
+            + "&lat=" + fetchedLoc.latitude
+            + "&lon=" + fetchedLoc.longitude
+            + "&entity_id=" + fetchedLoc.entity_id
+            + "&sort=rating"
+            + "&count=10", {
+            headers: {
                 'Accept': 'application/json',
                 'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
             }
         }).then(function (response) {
             return response.json();
         })
-    }*/
+            .then(function (response) {
+                return response.restaurants;
+            })
+
+    }
+
+
+    findLocationDetailsByCity(cityName) {
+        return fetch(RESTAURANT_URL + "/locations?query=" + cityName, {
+            headers: {
+
+                'Accept': 'application/json',
+                'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
+            }
+        }).then(function (response) {
+            console.log(response);
+            return response.json();
+        })
+    }
+
+
+    findAllRestaurants(cityName) {
+        this.findLocationDetailsByCity(cityName)
+            .then(function (response) {
+                let fetchedLoc = response.location_suggestions[0];
+                console.log(fetchedLoc);
+                return fetch(RESTAURANT_URL + "/search?q=" + cityName
+                    + "&lat=" + fetchedLoc.latitude
+                    + "&lon=" + fetchedLoc.longitude
+                    + "&entity_id=" + fetchedLoc.entity_id
+                    + "&sort=rating"
+                    + "&count=150", {
+                    headers: {
+                        'Accept': 'application/json',
+                        'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
+                    }
+                })
+            })
+            .then(function (response) {
+                console.log(response);
+                return response.json();
+            })
+            .then(restaurants => {
+                return restaurants;
+            })
+    }
+
+    /* findRestaurantsByLoc(fetchedLoc,cityName){
+         return fetch(RESTAURANT_URL + "/search?q="+cityName
+             +"&lat="+fetchedLoc.latitude
+             +"&lon="+fetchedLoc.longitude
+             +"&entity_id="+fetchedLoc.entity_id
+             +"&sort=rating"
+             +"&count=150",{
+             headers:{
+                 'Accept': 'application/json',
+                 'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
+             }
+         }).then(function (response) {
+             return response.json();
+         })
+     }*/
 
 
 }
