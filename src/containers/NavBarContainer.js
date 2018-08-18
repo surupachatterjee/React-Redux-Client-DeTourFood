@@ -10,7 +10,7 @@ import NavBarComponent from '../components/NavBarComponent';
 
 const dispatcherToPropertyMapper = dispatch => (
     {
-        findLocationDetailsByCity: city => actions.findLocationDetailsByCity(dispatch, city)
+        searchRestaurants: city => actions.searchRestaurants(dispatch, city)
     }
 )
 

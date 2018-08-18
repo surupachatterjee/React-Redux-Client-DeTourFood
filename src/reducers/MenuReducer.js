@@ -1,29 +1,29 @@
 import * as constants from '../constants';
 
 let initialState = {
-    menu: [],
+    menus: [],
 };
 
 const MenuReducer = (state=initialState, action) => {
     switch (action.type) {
         case constants.FIND_ALL_MENUS_FOR_RESTAURANT:
             return {
-                menu: action.menu
+                menus: action.menus
             };
 
         default: return state
 
         case constants.CREATE_MENU:
             return {
-                menu: [
-                    action.menu,
-                    ...state.menu
+                menus: [
+                    action.menus,
+                    ...state.menus
                 ],
             }
 
         case constants.DELETE_MENU:
             return {
-                menu: state.menu.filter(
+                menus: state.menus.filter(
                     menu => menu.id !== action.menuId
                 ),
             }
@@ -31,7 +31,7 @@ const MenuReducer = (state=initialState, action) => {
         case constants.UPDATE_MENU:
 
             let newState1 = {
-                menu: state.menu.map(menu => {
+                menus: state.menus.map(menu => {
                     if(menu.id === action.menu.id) {
                         return action.menu
                     } else {

@@ -8,23 +8,14 @@ const stateToPropertyMapper = (state, ownProps) => {
     return {
         restaurantId: id,
         restaurants: state.RestaurantReducer.restaurants
-        /*restaurantObj: state.RestaurantReducer.restaurants.filter((obj) => {
-            console.log(obj.restaurant);
-            console.log(obj.restaurant.id === id);
-            if(obj.restaurant.id === id) {
-                return true;
-            }
-            return false;
-        })*/
     }
 }
-
 
 
 /*
 const dispatcherToPropertyMapper = dispatch => (
     {
-        findLocationDetailsByCity: city => actions.findLocationDetailsByCity(dispatch, city)
+        searchRestaurants: city => actions.searchRestaurants(dispatch, city)
     }
 )
 */

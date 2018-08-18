@@ -1,55 +1,29 @@
 import * as constants from "../constants";
 import history from '../History';
 import RestaurantService from '../services/restaurant.service.client';
-const RESTAURANT_URL ="https://developers.zomato.com/api/v2.1";
+const RESTAURANT_URL ="https://localhost:4000/api/restaurant";
 //import MenuService from '../services/menu.service.client';
 const MENU_URL = 'https://localhost:4000/api/restaurant/RID/menu';
 
 
-export const findLocationDetailsByCity = (dispatch,cityName) => {
-    history.push("/search");
-     fetch(RESTAURANT_URL + "/locations?query=" + cityName,{
-        headers:{
+export const searchRestaurants = (dispatch,cityName) => {
+    return fetch (RESTAURANT_URL)
+        .then((response) => {
+            console.log(response)
+            if(response!==null && response.status === 200)
+                return response.json();
+            return null;
+        }).then(restaurants => {
 
-            'Accept': 'application/json',
-            'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
-        }
-    }).then(function (response) {
-        return response.json();
-    }).then(function (response) {
-        let fetchedLoc = response.location_suggestions[0];
-        console.log(fetchedLoc);
-        return fetch(RESTAURANT_URL + "/search?q="+cityName
-            +"&lat="+fetchedLoc.latitude
-            +"&lon="+fetchedLoc.longitude
-            +"&entity_id="+fetchedLoc.entity_id
-            +"&sort=rating"
-            +"&count=150",{
-            headers:{
-                'Accept': 'application/json',
-                'user-key': '8f387705dbb342d6fe530909e541b0dd'//key value here
-            }
+            return restaurants.filter(restaurant => {
+                return restaurant.city === cityName;
+            })
+        }).then(restaurants => {
+            dispatch({
+                type: constants.SEARCH_RESTAURANTS,
+                restaurants: restaurants
+            });
         })
-    }).then(function (response) {
-        return response.json();
-    }).then(searchResults => {
-        return searchResults.restaurants;
-    }).then(restaurants => {
-        dispatch({
-            type: constants.FIND_LOCATION_DETAILS_BY_CITY,
-            restaurants: restaurants
-            /*RestaurantService
-            //.instance
-            .findAllRestaurants(city)
-            /!*.then(restaurants => {
-              if (restaurants) {
-                  return restaurants;
-              }
-              return [];
-            })*!/*/
-        });
-    })
-
 }
 
 export const findAllMenusForRestaurant = (dispatch, restaurantId) => {
@@ -71,17 +45,17 @@ export const findAllMenusForRestaurant = (dispatch, restaurantId) => {
 
 export const createMenu = (dispatch, menu) => dispatch({
     type: constants.CREATE_MENU,
-    widget: menu
+    menu: menu
 });
 
 
 export const deleteMenu = (dispatch,menuId) => dispatch({
     type: constants.DELETE_MENU,
-    widgetId: menuId
+    menuId: menuId
 });
 
 
 export const updateMenu = (dispatch,menu) => dispatch({
     type: constants.UPDATE_MENU,
-    widget: menu
+    menu: menu
 });

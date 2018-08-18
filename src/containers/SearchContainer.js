@@ -3,7 +3,7 @@ import * as actions from '../actions';
 import SearchComponent from '../components/SearchComponent';
 import RestaurantReducer from '../reducers/RestaurantReducer';
 
-const stateToPropertyMapper = (state, ownProps) => (
+const stateToPropertyMapper = (state) => (
     {
         restaurants: state.RestaurantReducer.restaurants
     }
@@ -12,7 +12,7 @@ const stateToPropertyMapper = (state, ownProps) => (
 /*
 const dispatcherToPropertyMapper = dispatch => (
     {
-        findLocationDetailsByCity: city => actions.findLocationDetailsByCity(dispatch, city)
+        searchRestaurants: city => actions.searchRestaurants(dispatch, city)
     }
 )
 */

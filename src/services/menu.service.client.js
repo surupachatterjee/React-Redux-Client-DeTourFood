@@ -55,5 +55,4 @@ class MenuService {
         return fetch(MENU_URL + '/' + menuId)
             .then(response => response.json());
     };
-
 }

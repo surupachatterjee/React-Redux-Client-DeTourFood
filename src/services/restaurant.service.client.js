@@ -13,7 +13,7 @@ class RestaurantService{
         return this[_singleton]
     }
 
-    findLocationDetailsByCity(cityName){
+    searchRestaurants(cityName){
        return fetch(RESTAURANT_URL + "/locations?query=" + cityName,{
            headers:{
 
@@ -28,7 +28,7 @@ class RestaurantService{
 
 
     findAllRestaurants(cityName){
-        this.findLocationDetailsByCity(cityName)
+        this.searchRestaurants(cityName)
             .then(function (response) {
                 let fetchedLoc = response.location_suggestions[0];
                 console.log(fetchedLoc);

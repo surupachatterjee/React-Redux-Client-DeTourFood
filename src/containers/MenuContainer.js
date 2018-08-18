@@ -1,13 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import MenuComponent from '../components/MenuComponent';
 
-export default class MenuContainer extends React.PureComponent {
-
-    render() {
-        return(
-            <div className={"container"}>
-                <MenuComponent/>
-            </div>
-        );
+const stateToPropertyMapper = (state, ownProps) => {
+    return {
+        menus: state.MenuReducer.menus
     }
 }
+
+const MenuContainer =
+    connect(
+        stateToPropertyMapper,
+        null)
+    (MenuComponent)
+
+export default MenuContainer;
