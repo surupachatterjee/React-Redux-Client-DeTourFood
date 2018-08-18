@@ -1,16 +1,17 @@
 import React from 'react';
+import swal from '../../node_modules/sweetalert'
 
-class LoginComponent extends React.PureComponent{
-    render(){
+class LoginComponent extends React.PureComponent {
+    render() {
         let username;
         let password;
-        return(
+        return (
             <div className="main">
                 <div className="form-group row"/>
                 <div className="form-group row">
                     <div className="col-sm-3"/>
                     <div className="container-fluid col-sm-6">
-                        <h1 style={{"color" :"white"}}>Sign In</h1>
+                        <h1 style={{"color": "white"}}>Sign In</h1>
                         <div className="form-group row"/>
                         <div className="form-group row">
                             <label htmlFor="usernameFld" className="col-sm-2 col-form-label">
@@ -48,10 +49,10 @@ class LoginComponent extends React.PureComponent{
                                                 password: this.password.value
                                             };
                                             if (this.username.value === '') {
-                                                alert("Please enter valid username");
-                                            }else if(this.password.value === ''){
-                                                alert("Please enter valid password");
-                                            }else{
+                                                swal("Login Error!!!", "Enter username", "error");
+                                            } else if (this.password.value === '') {
+                                                swal("Login Error!!!", "Enter password", "error");
+                                            } else {
                                                 this.props.login(user);
                                             }
                                         }}>

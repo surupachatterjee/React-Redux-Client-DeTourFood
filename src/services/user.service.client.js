@@ -42,6 +42,12 @@ class UserService {
             credentials: 'include'
         });
     }
+
+
+    findUserByUsername(username){
+        return fetch(constants.USER_URL +"/" +username)
+            .then(response => response.json());
+    }
 }
 
 export default UserService;

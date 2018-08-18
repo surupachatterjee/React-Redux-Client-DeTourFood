@@ -6,6 +6,7 @@ export const USER_PROFILE_DETAILS = 'PROFILE';
 export const USER_PROFILE_ADDRESSES= 'ADDRESSES';
 export const USER_LOGIN ='LOGIN';
 export const USER_LOGOUT='LOGOUT';
+export const FIND_USER_BY_USERNAME='FIND_USER_BY_USERNAME';
 
 //URLS
 export const USER_URL ="http://localhost:4000/api/user";
