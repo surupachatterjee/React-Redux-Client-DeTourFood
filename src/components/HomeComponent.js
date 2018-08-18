@@ -8,7 +8,7 @@ class HomeComponent extends React.PureComponent {
             <div>
                 <div>
                     <br/>
-                    <img src={require("../images/HomeImage3.jpg")}/>
+                    {/*<img src={require("../images/HomeImage3.jpg")}/>*/}
                 </div>
             </div>
         );
