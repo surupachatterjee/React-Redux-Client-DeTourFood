@@ -7,10 +7,12 @@ export const USER_PROFILE_ADDRESSES= 'ADDRESSES';
 export const USER_LOGIN ='LOGIN';
 export const USER_LOGOUT='LOGOUT';
 export const FIND_USER_BY_USERNAME='FIND_USER_BY_USERNAME';
+export const ADMIN_RESTAURANT_VIEW='ADMIN_RESTAURANT_VIEW';
 
 //URLS
 export const USER_URL ="http://localhost:4000/api/user";
 export const LOGIN_URL ="http://localhost:4000/api/login";
 export const LOGOUT_URL ="http://localhost:4000/api/logout";
+export const LOCAL_RESTAURANT_URL ="http://localhost:4000/api/restaurant";
 
 

@@ -5,11 +5,16 @@ class HomeComponent extends React.PureComponent {
 
     render() {
         return(
-            <div>
-                <div>
+            <div className="form-group row">
+                <div className="col-2"/>
+                <div className="registerBox col-6">
                     <br/>
-                    {/*<img src={require("../images/HomeImage3.jpg")}/>*/}
+                    <a className="btn btn-primary col-3"
+                    href="/registerUser"><b>Sign Up As User</b></a>
+                    <a className="btn btn-primary col-3"
+                    href="/registerRestaurant"><b>Sign Up As Restaurant</b></a>
                 </div>
+                <div className="col-2"/>
             </div>
         );
     }

@@ -10,5 +10,16 @@ body {
     font-family: sans-serif;
     background-image: url("../images/HomeImage3.jpg");
     max-width: 100%;
-    max-height: 100%;
+    max-height: 40%;
+}
+a{
+    margin: 10px;
+}
+.registerBox{
+    background-color: lightgrey;
+    width: 50px;
+    border: 3px solid grey;
+    padding: 50px;
+    margin: 10%;
+
 }

@@ -41,7 +41,10 @@ class NavBarComponent extends React.PureComponent {
                                 <li className="nav-item nav-link">
                                     <a href='#' onClick={() => this.props.visitProfile()}> LoggedIn As:{this.props.user.username}</a>
                                 </li>}
-
+                                {this.props.loggedIn && this.props.user.role==='ADMIN' &&
+                                <li className="nav-item nav-link">
+                                    <a href='#' onClick={() => this.props.visitAdminPage()} >Admin</a>
+                                </li>}
                                 {this.props.loggedIn &&
                                 <li className="nav-item nav-link">
                                     <a href='#' onClick={() =>this.props.logout()}>Logout</a>
@@ -53,11 +56,11 @@ class NavBarComponent extends React.PureComponent {
                                        placeholder="Search"
                                        aria-label="Search"
                                        ref={node => location = node}/>
-                                    <button onClick={() => this.props.findLocationDetailsByCity(location.value)}
-                                            className="btn btn-outline-success my-2 my-sm-0"
-                                            type="button">
-                                        Search By City
-                                    </button>
+                                <button onClick={() => this.props.findLocationDetailsByCity(location.value)}
+                                        className="btn btn-outline-success my-2 my-sm-0"
+                                        type="button">
+                                    Search By City
+                                </button>
                             </form>
                         </div>
                     </nav>

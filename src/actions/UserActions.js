@@ -61,4 +61,8 @@ export const visitProfile = () => {
 
 }
 
+export const visitAdminPage = () => {
+    history.push("/admin");
+}
+
 

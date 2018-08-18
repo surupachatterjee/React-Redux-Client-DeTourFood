@@ -165,8 +165,6 @@ class UserProfileComponent extends React.PureComponent {
                     </div>
                     <div className="col-sm-2"/>
                 </div>
-
-
             </div>
         )
     }

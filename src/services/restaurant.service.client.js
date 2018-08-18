@@ -1,4 +1,8 @@
+import * as constants from '../constants'
+
 const RESTAURANT_URL ="https://developers.zomato.com/api/v2.1";
+
+
 var cityDetails;
 
 let _singleton = Symbol();
@@ -12,6 +16,18 @@ class RestaurantService{
             this[_singleton] = new RestaurantService(_singleton);
         return this[_singleton]
     }
+
+    createRestUser(user) {
+        return fetch(constants.LOCAL_RESTAURANT_URL,{
+            method:'post',
+            body:JSON.stringify(user),
+            headers:{
+                'content-type':'application/json'
+            }
+        }).then(response => response.json());
+
+    }
+
 
     findLocationDetailsByCity(cityName){
        return fetch(RESTAURANT_URL + "/locations?query=" + cityName,{
@@ -66,6 +82,9 @@ class RestaurantService{
             return response.json();
         })
     }*/
+
+
 }
+
 
 export default RestaurantService;
