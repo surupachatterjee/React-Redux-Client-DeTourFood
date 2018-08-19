@@ -15,7 +15,7 @@ const  stateToPropertyMapper = (state) =>{
 
 const dispatcherToPropertyMapper = dispatch => (
     {
-        findLocationDetailsByCity: city => actions.findLocationDetailsByCity(dispatch, city),
+
         visitProfile:() => userAction.visitProfile(),
         visitAdminPage:()=>userAction.visitAdminPage(),
         logout:() => userAction.logout(dispatch),

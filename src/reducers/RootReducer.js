@@ -4,9 +4,7 @@ import UserReducer from './UserReducer';
 import MenuReducer from './MenuReducer';
 
 const RootReducer = combineReducers({
-    RestaurantReducer,
-    UserReducer
-
+    UserReducer,
     RestaurantReducer,
     MenuReducer
 });

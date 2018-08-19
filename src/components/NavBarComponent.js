@@ -1,4 +1,5 @@
 import React from 'react';
+import history from '../History'
 
 
 class NavBarComponent extends React.PureComponent {
@@ -56,11 +57,6 @@ class NavBarComponent extends React.PureComponent {
                                        placeholder="Search"
                                        aria-label="Search"
                                        ref={node => location = node}/>
-                                <button onClick={() => this.props.findLocationDetailsByCity(location.value)}
-                                        className="btn btn-outline-success my-2 my-sm-0"
-                                        type="button">
-                                    Search By City
-                                </button>
                                     <button onClick={() => {
                                         this.props.searchRestaurants(location.value)
                                         history.push("/search");
