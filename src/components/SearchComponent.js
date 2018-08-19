@@ -4,6 +4,15 @@ import MenuContainer from '../containers/MenuContainer';
 
 class SearchComponent extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
+
+    }
+
+    componentDidMount() {
+        this.props.findAllRestaurants();
+    }
+
     render() {
         return (
             <div className={"container"}>

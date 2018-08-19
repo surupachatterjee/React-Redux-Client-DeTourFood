@@ -1,7 +1,9 @@
 import * as constants from '../constants';
 
 let initialState = {
-    restaurants: []
+    restaurants: [],
+    searchedRestaurants: [],
+    selectedRestaurant: ''
 };
 
 const RestaurantReducer = (state=initialState, action) => {
@@ -10,16 +12,25 @@ const RestaurantReducer = (state=initialState, action) => {
             return {
                 restaurants: state.restaurants,
                 searchedRestaurants: state.restaurants.filter(restaurant =>
-                   String(restaurant.zomatoRest.restaurant.location.city).toLowerCase() === String(action.cityName).toLowerCase()
-                )
+                   restaurant.zomatoRest.restaurant.location.city === action.cityName
+                ),
+                selectedRestaurant: state.selectedRestaurant
             };
         case constants.FIND_ALL_RESTAURANTS:
             return {
                 restaurants: action.restaurants,
-                searchedRestaurants: state.searchedRestaurants
+                searchedRestaurants: state.searchedRestaurants,
+                selectedRestaurant: state.selectedRestaurant
+            };
+        case constants.FIND_RESTAURANT_BY_ID:
+            return {
+                restaurants: state.restaurants,
+                searchedRestaurants: state.searchedRestaurants,
+                selectedRestaurant: action.restaurant
             };
 
         default: return state
+
     }
 }
 
