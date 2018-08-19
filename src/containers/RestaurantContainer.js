@@ -1,13 +1,16 @@
 import {connect} from 'react-redux'
 import * as actions from '../actions';
-import SearchComponent from '../components/SearchComponent';
 import RestaurantReducer from '../reducers/RestaurantReducer';
+import RestaurantComponent from '../components/RestaurantComponent';
 
-const stateToPropertyMapper = (state) => (
-    {
+const stateToPropertyMapper = (state, ownProps) => {
+    let id = ownProps.match.params.restaurantId;
+    return {
+        restaurantId: id,
         restaurants: state.RestaurantReducer.restaurants
     }
-)
+}
+
 
 /*
 const dispatcherToPropertyMapper = dispatch => (
@@ -17,10 +20,10 @@ const dispatcherToPropertyMapper = dispatch => (
 )
 */
 
-const SearchContainer =
+const RestaurantContainer =
     connect(
         stateToPropertyMapper,
         null)
-    (SearchComponent)
+    (RestaurantComponent)
 
-export default SearchContainer;
+export default RestaurantContainer;

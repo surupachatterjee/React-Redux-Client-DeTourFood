@@ -1,26 +1,34 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import MenuContainer from '../containers/MenuContainer';
 
 class SearchComponent extends React.PureComponent {
 
     render() {
         return (
-            <div>
-                <h1>Search Results</h1>
-                {this.props.restaurants.restaurants && this.props.restaurants.restaurants.map(restaurant => {
-                    console.log(restaurant);
-                    return (
-                        <div className="card w-50" key={restaurant.restaurant.id}>
-                            <div className="card-body" key={restaurant.restaurant.id}>
-                                <h4 className="card-title">Restaurant Name: {restaurant.restaurant.name}</h4>
-                                <h4 className="card-title">Cuisines: {restaurant.restaurant.cuisines}</h4>
-                                    <h4 className="card-title">
-                                        Featured Image: <img className="card-img-top"
-                                                             src={restaurant.restaurant.featured_image}/>
-                                    </h4>
+            <div className={"container"}>
+                <h3>Found {this.props.restaurants.length} Search Results</h3>
+                <div className={"row"}>
+                    {this.props.restaurants && this.props.restaurants.map(obj => {
+                        let restaurant = obj.restaurant;
+                        return (
+                            <div className={"col-6"} key={restaurant.id}>
+                            <div className="card">
+                                <img className="card-img-top" src={restaurant.featured_image} alt="Card image cap"/>
+                                    <div className="card-body">
+                                        <h4 className="card-title">{restaurant.name}</h4>
+                                        <h5 className="card-text"> Cuisines: {restaurant.cuisines} </h5>
+                                        <Link to={`/restaurant/${restaurant.id}`}>
+                                            <button className="btn btn-outline-warning btn-block" type={"button"}>
+                                                Order Now
+                                            </button>
+                                        </Link>
+                                    </div>
                             </div>
-                        </div>
-                    );
-                })}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         )
     }

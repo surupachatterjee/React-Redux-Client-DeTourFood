@@ -18,8 +18,8 @@ const dispatcherToPropertyMapper = dispatch => (
         findLocationDetailsByCity: city => actions.findLocationDetailsByCity(dispatch, city),
         visitProfile:() => userAction.visitProfile(),
         visitAdminPage:()=>userAction.visitAdminPage(),
-        logout:() => userAction.logout(dispatch)
-
+        logout:() => userAction.logout(dispatch),
+        searchRestaurants: city => actions.searchRestaurants(dispatch, city)
     }
 )
 

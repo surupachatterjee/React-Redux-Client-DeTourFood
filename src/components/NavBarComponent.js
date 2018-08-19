@@ -61,6 +61,14 @@ class NavBarComponent extends React.PureComponent {
                                         type="button">
                                     Search By City
                                 </button>
+                                    <button onClick={() => {
+                                        this.props.searchRestaurants(location.value)
+                                        history.push("/search");
+                                    }}
+                                            className="btn btn-outline-success my-2 my-sm-0"
+                                            type="button">
+                                        Search By City
+                                    </button>
                             </form>
                         </div>
                     </nav>

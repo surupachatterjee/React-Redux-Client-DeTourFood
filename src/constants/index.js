@@ -16,3 +16,9 @@ export const LOGOUT_URL ="http://localhost:4000/api/logout";
 export const LOCAL_RESTAURANT_URL ="http://localhost:4000/api/restaurant";
 
 
+
+export const FIND_ALL_MENUS_FOR_RESTAURANT = 'FIND_ALL_MENUS_FOR_RESTAURANT';
+export const CREATE_MENU = 'CREATE_MENU';
+export const DELETE_MENU = 'DELETE_MENU';
+export const UPDATE_MENU = 'UPDATE_MENU';
+export const SEARCH_RESTAURANTS = 'SEARCH_RESTAURANTS';

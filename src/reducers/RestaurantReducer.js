@@ -6,7 +6,7 @@ let initialState = {
 
 const RestaurantReducer = (state=initialState, action) => {
     switch (action.type) {
-        case constants.FIND_LOCATION_DETAILS_BY_CITY:
+        case constants.SEARCH_RESTAURANTS:
             return {
                 restaurants: action.restaurants
             };
