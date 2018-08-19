@@ -28,12 +28,6 @@ const RestaurantReducer = (state=initialState, action) => {
                 searchedRestaurants: state.searchedRestaurants,
                 selectedRestaurant: action.restaurant
             };
-        case constants.UPDATE_RESTAURANT_MENU:
-            return {
-                restaurants: state.restaurants,
-                searchedRestaurants: state.searchedRestaurants,
-                selectedRestaurant: action.restaurant
-        };
 
         default: return state
 

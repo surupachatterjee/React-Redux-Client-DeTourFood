@@ -228,7 +228,7 @@ class RegisterRestaurantComponent extends React.PureComponent {
                                                 zip: this.zip.value,
                                                 country: this.country.value,
                                                 primaryShipAddr: true,
-                                                billingAddr: true
+                                                billingAddr: true,
                                             }
                                             let user = {
                                                 username: this.username.value,

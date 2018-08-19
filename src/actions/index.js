@@ -4,11 +4,54 @@ import UserService from "../services/user.service.client";
 import RestaurantService from '../services/restaurant.service.client';
 const RESTAURANT_URL ="http://localhost:4000/api/restaurant";
 //import MenuService from '../services/menu.service.client';
-const MENU_URL = 'http://localhost:4000/api/restaurant/RID/menu';
+const MENU_URL = 'http://localhost:4000/api/menu';
 
-export const updateRestaurantMenu = (dispatch, menu, restaurantId) => {
-        alert(JSON.stringify(menu));
-        return fetch(RESTAURANT_URL + "/" + restaurantId + '/menu',{
+export const addToOrder = (dispatch, orderItem) => {
+    dispatch({
+        type: constants.ADD_TO_ORDER,
+        orderItem: orderItem
+    })
+}
+
+
+export const changeMenuName = (dispatch, name) => {
+    dispatch({
+        type: constants.CHANGE_MENU_NAME,
+        name: name
+    })
+}
+
+export const changeMenuCuisine = (dispatch, cuisineName) => {
+    dispatch({
+        type: constants.CHANGE_MENU_CUISINE,
+        cuisineName: cuisineName
+    })
+}
+
+export const changeMenuItems = (dispatch, menuItems) => {
+    dispatch({
+        type: constants.CHANGE_MENU_ITEMS,
+        menuItems: menuItems
+    })
+}
+
+export const findMenuById = (dispatch, menuId) => {
+    return fetch(MENU_URL + "/" + menuId)
+        .then((response) => {
+            console.log(response)
+            if(response!==null && response.status === 200)
+                return response.json();
+            return null;
+        }).then(menu =>
+            dispatch({
+                type: constants.FIND_MENU_BY_ID,
+                menu: menu
+            })
+        )
+}
+
+export const updateRestaurantMenu = (dispatch, menuId, menu) => {
+        return fetch(MENU_URL + "/" + menuId,{
                 method:'PUT',
                 body:JSON.stringify(menu),
                 headers:{
@@ -21,27 +64,35 @@ export const updateRestaurantMenu = (dispatch, menu, restaurantId) => {
                     if(response!==null && response.status === 200)
                             return response.json();
                     return null;
-                }).then(restaurant =>{
-                    dispatch({
+                }).then(() =>{
+                    if (menu) {
+                        dispatch({
                             type: constants.UPDATE_RESTAURANT_MENU,
-                            menu: restaurant,
+                            menu: menu,
                         })
+                    }
                 });
 }
 
 export const findRestaurantById = (dispatch, id) => {
+    let restaurantTemp
     return fetch(RESTAURANT_URL + "/" + id)
         .then((response) => {
             console.log(response)
             if(response!==null && response.status === 200)
                 return response.json();
             return null;
-        }).then(restaurant =>
+        }).then(restaurant => {
+            restaurantTemp = restaurant
+            if (restaurant.menu) {
+                findMenuById(dispatch, restaurant.menu)
+            }
+            }).then(menu => {
             dispatch({
                 type: constants.FIND_RESTAURANT_BY_ID,
-                restaurant: restaurant
+                restaurant: restaurantTemp
             })
-        )
+        })
 }
 
 export const findAllRestaurants = (dispatch) => {

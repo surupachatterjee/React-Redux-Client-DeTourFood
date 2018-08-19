@@ -5,49 +5,26 @@ class ManageMenuComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
-        this.state = {
-            name: '',
-            cuisineName: '',
-            menuItems: ''
-        }
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeCuisine = this.onChangeCuisine.bind(this);
-        this.onChangeItems = this.onChangeItems.bind(this);
-        this.updateMenu = this.updateMenu.bind(this);
     }
 
-    onChangeName(input) {
-        this.setState({
-            name: input,
-        });
-    }
-    onChangeCuisine(input) {
-        this.setState({
-            cuisineName: input,
-        });
-    }
-    onChangeItems(input) {
-        this.setState({
-            menuItems: input,
-        });
-    }
+    /*componentDidMount() {
+        this.props.findRestaurantById(this.props.restaurantId);
+        /!*if (this.props.restaurant) {
+            this.props.findMenuById(this.props.restaurant.menu);
+        }*!/
+    }*/
 
-    updateMenu() {
-        let menu = {
-            name: this.state.name,
-            cuisineName: this.state.cuisineName,
-            menuItems: this.state.menuItems
-        }
 
-        alert(this.state.name);
-        this.props.updateRestaurantMenu(menu, this.props.restaurantId)
-    }
+
+
 
     render() {
+        let menu = this.props.menu;
         let name, cuisineName, menuItems;
         return(
             <div className={"container card bg-light"}>
                 <h1>Manage Menu</h1>
+                {menu &&
                 <div className="main">
                     <div className="form-group row">
                         <div className="col-sm-1"/>
@@ -60,9 +37,10 @@ class ManageMenuComponent extends React.PureComponent {
                                     <input id="menuName"
                                            ref={node => name = node}
                                            placeholder="Boston Shawarma's Menu"
-                                           onChange={() => this.onChangeName(name.value)}
+                                           onChange={() => this.props.changeMenuName(name.value)}
                                            type="text"
-                                           className="form-control"/>
+                                           className="form-control"
+                                           value={this.props.name}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -73,31 +51,33 @@ class ManageMenuComponent extends React.PureComponent {
                                     <input id="cuisineName"
                                            placeholder="Indian"
                                            ref={node => cuisineName = node}
-                                           onChange={() => this.onChangeCuisine(cuisineName.value)}
+                                           onChange={() => this.props.changeMenuCuisine(cuisineName.value)}
                                            type="text"
-                                           className="form-control"/>
+                                           className="form-control"
+                                           value={this.props.cuisineName}/>
                                 </div>
                             </div>
                             <div className={"row form-group"}>
                                 <label htmlFor="menuItems" className="col-sm-2 col-form-label">
-                                Menu Items
+                                    Menu Items
                                 </label>
                                 <div className={"col-sm-10"}>
-                                    <textarea  className={"form-control"}
-                                               id = {"menuItems"}
-                                               placeholder={"Enter one menu item per line: e.g. Falfel-$12"}
-                                               rows={"8"}
-                                               ref={node => menuItems =node}
-                                               onChange={() => this.onChangeItems(menuItems.value)}/>
+                                    <textarea className={"form-control"}
+                                              id={"menuItems"}
+                                              placeholder={"Enter one menu item per line: e.g. Falfel-$12"}
+                                              rows={"8"}
+                                              ref={node => menuItems = node}
+                                              onChange={() => this.props.changeMenuItems(menuItems.value)}
+                                              value={this.props.menuItems}/>
                                     *Enter menu items in Item-Price combination.
                                 </div>
                             </div>
                             <div className={"form-group row"}>
                                 <div className="col-sm-12">
-                                <button className="btn btn-outline-success btn-block"
-                                        onClick={() => this.updateMenu()}>
-                                    Update Restaurant Menu
-                                </button>
+                                    <button className="btn btn-outline-success btn-block"
+                                            onClick={() => this.props.updateMenu()}>
+                                        Update Restaurant Menu
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +85,9 @@ class ManageMenuComponent extends React.PureComponent {
                     </div>
                     <div className="form-group row"/>
                 </div>
+                 }
             </div>
+
         )
     }
 }
