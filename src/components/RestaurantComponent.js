@@ -9,16 +9,17 @@ class RestaurantComponent extends React.PureComponent {
 
         return (
             <div>
-                {this.props.restaurants && this.props.restaurants.map(obj => {
-                    let restaurant = obj.restaurant;
-                    if (this.props.restaurantId === restaurant.id)
+                {this.props.restaurants && this.props.restaurants.map(restaurant => {
+
+                    if (this.props.restaurantId === restaurant._id)
                     {
-                        let loc = restaurant.location;
+                        let zomatoInfo = restaurant.zomatoRest.restaurant;
+                        let loc = zomatoInfo.location;
                         return (
                             <div  className={"container"} key={"restaurant.id"}>
                                 <div className="card">
                                     <img className="card-img-top"
-                                         src={restaurant.featured_image}
+                                         src={zomatoInfo.featured_image}
                                          alt="Card image cap"
                                          id={"restaurantImg"}/>
                                     <div className="card-body">
@@ -29,13 +30,13 @@ class RestaurantComponent extends React.PureComponent {
                                             <div className={"col-sm-4"}>
                                                 <h5>Cuisines</h5>
                                                 <h6 className="card-text">
-                                                    {restaurant.cuisines}
+                                                    {zomatoInfo.cuisines}
                                                 </h6>
                                             </div>
                                             <div className={"col-sm-4"}>
                                                 <h5>Average Cost for 2</h5>
                                                 <h6 className="card-text">
-                                                    ${restaurant.average_cost_for_two}
+                                                    ${zomatoInfo.average_cost_for_two}
                                                 </h6>
                                             </div>
                                             <div className={"col-sm-4"}>
@@ -47,7 +48,7 @@ class RestaurantComponent extends React.PureComponent {
                                         </div>
                                     </div>
                                 </div>
-                                <MenuContainer restaurantId={restaurant.id}/>
+                                <MenuContainer restaurantId={restaurant._id}/>
                             </div>
                         );
                     }

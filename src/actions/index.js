@@ -2,30 +2,30 @@ import * as constants from "../constants";
 import history from '../History';
 import UserService from "../services/user.service.client";
 import RestaurantService from '../services/restaurant.service.client';
-const RESTAURANT_URL ="https://localhost:4000/api/restaurant";
+const RESTAURANT_URL ="http://localhost:4000/api/restaurant";
 //import MenuService from '../services/menu.service.client';
-const MENU_URL = 'https://localhost:4000/api/restaurant/RID/menu';
+const MENU_URL = 'http://localhost:4000/api/restaurant/RID/menu';
 
-
-export const searchRestaurants = (dispatch,cityName) => {
+export const findAllRestaurants = (dispatch) => {
     return fetch (RESTAURANT_URL)
         .then((response) => {
             console.log(response)
             if(response!==null && response.status === 200)
                 return response.json();
             return null;
-        }).then(restaurants => {
-
-            return restaurants.filter(restaurant => {
-                return restaurant.city === cityName;
-            })
-        }).then(restaurants => {
+        }).then(restaurants =>
             dispatch({
-                type: constants.SEARCH_RESTAURANTS,
+                type: constants.FIND_ALL_RESTAURANTS,
                 restaurants: restaurants
-            });
-        })
+            })
+        )
 }
+
+export const searchRestaurants = (dispatch,cityName) =>
+    dispatch({
+        type: constants.SEARCH_RESTAURANTS,
+        cityName: cityName
+    });
 
 export const findAllMenusForRestaurant = (dispatch, restaurantId) => {
     history.push("/menu");

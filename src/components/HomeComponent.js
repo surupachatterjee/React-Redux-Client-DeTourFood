@@ -3,6 +3,14 @@ import '../styles/HomeComponent.css';
 
 class HomeComponent extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.findAllRestaurants();
+    }
+
     render() {
         return(
             <div className="form-group row">

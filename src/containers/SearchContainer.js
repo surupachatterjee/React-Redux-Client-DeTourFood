@@ -5,7 +5,7 @@ import RestaurantReducer from '../reducers/RestaurantReducer';
 
 const stateToPropertyMapper = (state) => (
     {
-        restaurants: state.RestaurantReducer.restaurants
+        restaurants: state.RestaurantReducer.searchedRestaurants
     }
 )
 

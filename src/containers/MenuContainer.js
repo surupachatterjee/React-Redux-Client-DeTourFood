@@ -1,6 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import MenuComponent from '../components/MenuComponent';
+import ViewMenuComponent from '../components/ViewMenuComponent';
+import AddMenuComponent from "../components/AddMenuComponent";
+
+
+class MenuContainerHelper extends React.PureComponent {
+
+    render() {
+        return(
+            <div>
+                <AddMenuComponent/>
+                <ViewMenuComponent/>
+            </div>
+        )
+    }
+}
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
@@ -12,6 +26,6 @@ const MenuContainer =
     connect(
         stateToPropertyMapper,
         null)
-    (MenuComponent)
+    (MenuContainerHelper)
 
 export default MenuContainer;

@@ -9,16 +9,16 @@ class SearchComponent extends React.PureComponent {
             <div className={"container"}>
                 <h3>Found {this.props.restaurants.length} Search Results</h3>
                 <div className={"row"}>
-                    {this.props.restaurants && this.props.restaurants.map(obj => {
-                        let restaurant = obj.restaurant;
+                    {this.props.restaurants && this.props.restaurants.map(restaurant => {
+                        let zomatoInfo = restaurant.zomatoRest.restaurant;
                         return (
-                            <div className={"col-6"} key={restaurant.id}>
+                            <div className={"col-6"} key={restaurant._id}>
                             <div className="card">
-                                <img className="card-img-top" src={restaurant.featured_image} alt="Card image cap"/>
+                                <img className="card-img-top" src={zomatoInfo.featured_image} alt="Card image cap"/>
                                     <div className="card-body">
                                         <h4 className="card-title">{restaurant.name}</h4>
-                                        <h5 className="card-text"> Cuisines: {restaurant.cuisines} </h5>
-                                        <Link to={`/restaurant/${restaurant.id}`}>
+                                        <h5 className="card-text"> Cuisines: {zomatoInfo.cuisines} </h5>
+                                        <Link to={`/restaurant/${restaurant._id}`}>
                                             <button className="btn btn-outline-warning btn-block" type={"button"}>
                                                 Order Now
                                             </button>
