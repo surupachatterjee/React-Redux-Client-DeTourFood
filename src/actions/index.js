@@ -6,6 +6,29 @@ const RESTAURANT_URL ="http://localhost:4000/api/restaurant";
 //import MenuService from '../services/menu.service.client';
 const MENU_URL = 'http://localhost:4000/api/restaurant/RID/menu';
 
+export const updateRestaurantMenu = (dispatch, menu, restaurantId) => {
+        alert(JSON.stringify(menu));
+        return fetch(RESTAURANT_URL + "/" + restaurantId + '/menu',{
+                method:'PUT',
+                body:JSON.stringify(menu),
+                headers:{
+                    'content-type':'application/json'
+                },
+            credentials: 'include',
+            })
+            .then((response) => {
+                    console.log(response)
+                    if(response!==null && response.status === 200)
+                            return response.json();
+                    return null;
+                }).then(restaurant =>{
+                    dispatch({
+                            type: constants.UPDATE_RESTAURANT_MENU,
+                            menu: restaurant,
+                        })
+                });
+}
+
 export const findRestaurantById = (dispatch, id) => {
     return fetch(RESTAURANT_URL + "/" + id)
         .then((response) => {

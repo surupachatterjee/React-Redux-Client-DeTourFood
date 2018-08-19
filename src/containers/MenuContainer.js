@@ -1,15 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ViewMenuComponent from '../components/ViewMenuComponent';
-import AddMenuComponent from "../components/AddMenuComponent";
-
+import ManageMenuComponent from "../components/ManageMenuComponent";
+import * as actions from "../actions";
 
 class MenuContainerHelper extends React.PureComponent {
 
     render() {
         return(
             <div>
-                <AddMenuComponent/>
+                <ManageMenuComponent
+                    updateRestaurantMenu={this.props.updateRestaurantMenu}
+                    restaurant={this.props.restaurant}
+                    restaurantId={this.props.restaurantId}
+                />
                 <ViewMenuComponent/>
             </div>
         )
@@ -18,14 +22,22 @@ class MenuContainerHelper extends React.PureComponent {
 
 const stateToPropertyMapper = (state, ownProps) => {
     return {
-        menus: state.MenuReducer.menus
+        restaurantId: ownProps.restaurantId,
+        restaurant: state.RestaurantReducer.restaurant
+    }
+}
+
+const dispatcherToPropertyMapper = dispatch => {
+    console.log("Inside dispatcherToPropertyMapper of MenuContainer ");
+    return {
+        updateRestaurantMenu: (menu, restaurantId) => actions.updateRestaurantMenu(dispatch, menu, restaurantId)
     }
 }
 
 const MenuContainer =
     connect(
         stateToPropertyMapper,
-        null)
+        dispatcherToPropertyMapper)
     (MenuContainerHelper)
 
 export default MenuContainer;
