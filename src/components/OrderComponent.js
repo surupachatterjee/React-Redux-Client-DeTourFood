@@ -70,6 +70,7 @@ export default class OrderComponent extends React.PureComponent {
                     </div>
                 </div>}
                 { this.props.loggedIn && this.props.user.role !== 'CUSTOMER' &&
+                    this.props.user.role !== 'ADMIN' &&
                     <div className={"container card"}>
                     <div className={"row"}>
                         <div className={"col-sm-6"}>
