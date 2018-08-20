@@ -24,6 +24,8 @@ export const findAllOrders = (dispatch) => {
 }
 
 
+let restService = RestaurantService.instance;
+
 export const findAllUsers = (dispatch) => {
     return fetch (USER_URL)
             .then((response) => {
@@ -209,3 +211,11 @@ export const updateMenu = (dispatch,menu) => dispatch({
     type: constants.UPDATE_MENU,
     menu: menu
 });
+
+export const createReview = (dispatch,review) => {
+    restService.createReview(review)
+        .then(review => {
+            findRestaurantById(dispatch,review.restaurant)
+
+        })
+}

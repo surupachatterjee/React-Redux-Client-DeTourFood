@@ -19,6 +19,7 @@ export const ADMIN_USER_EDIT ='ADMIN_USER_EDIT';
 export const USER_ADDRESS_EDIT ='USER_ADDRESS_EDIT';
 export const ADMIN_USER_LIST = 'ADMIN_USER_LIST';
 export const UPDATE_EDITABLE_USER = 'UPDATE_EDITABLE_USER';
+export const CREATE_REVIEW = 'CREATE_REVIEW';
 
 //URLS
 export const USER_URL ="http://localhost:4000/api/user";
@@ -26,6 +27,7 @@ export const LOGIN_URL ="http://localhost:4000/api/login";
 export const LOGOUT_URL ="http://localhost:4000/api/logout";
 export const LOCAL_RESTAURANT_URL ="http://localhost:4000/api/restaurant";
 export const ADMIN_USER_URL = "http://localhost:4000/api/admin/user";
+export const REVIEW_URL = "http://localhost:4000/api/review";
 
 
 
