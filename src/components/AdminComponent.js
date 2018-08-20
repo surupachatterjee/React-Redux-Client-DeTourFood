@@ -374,7 +374,7 @@ class AdminComponent extends React.PureComponent {
                     <h4> Active Restaurants </h4></a>
                 {this.restaurantStsSec === constants.REST_STATUS_ACTIVE &&
                 <div>{this.renderActiveRestaurants()}</div>}
-                <a href="#" onClick={(event) => this.restaurantStsSec === constants.REST_STATUS_INACTIVE}>
+                <a href="#" onClick={(event) => this.restaurantStsSec = constants.REST_STATUS_INACTIVE}>
                     <h4> Inactive Restaurants </h4></a>
                 {this.restaurantStsSec === constants.REST_STATUS_INACTIVE &&
                 <div>{this.renderInactiveRestaurants()}</div>}
@@ -429,9 +429,13 @@ class AdminComponent extends React.PureComponent {
         console.log("inactiveRestaurant.count: " + inactiveRestaurant.length);
         //this.renderRestaurantListItems(inactiveRestaurant);
         let restInact = inactiveRestaurant.map(restInactv => {
-            return <li className="list-group-item" key={restInact._id}>
-                {restInact.name}
-                <button className="btn btn-secondary float-right">Activate Restaurant</button>
+            return <li className="list-group-item" key={restInactv._id}>
+                {restInactv.name}
+                <button className="btn btn-secondary float-right"
+                        onClick={() => {
+                            let status = "ACTIVE";
+                            this.props.changeStatus(restInactv._id, status)
+                        }}>Activate Restaurant</button>
             </li>
         });
         return (<ul className="list-group">{restInact}</ul>);
