@@ -1,14 +1,15 @@
 import * as constants from '../constants';
 
 let initialState = {
-    order: []
+    orderItems: []
 };
 
 const OrderReducer = (state=initialState, action) => {
     switch (action.type) {
         case constants.ADD_TO_ORDER:
+            alert(JSON.stringify(state.orderItems));
             return {
-                order: [...state.order,
+                orderItems: [...state.orderItems,
                         action.orderItem]
             };
 

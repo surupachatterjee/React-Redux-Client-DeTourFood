@@ -1,4 +1,5 @@
 import React from 'react';
+import history from '../History';
 
 class ViewMenuComponent extends React.PureComponent {
 
@@ -50,12 +51,17 @@ class ViewMenuComponent extends React.PureComponent {
                                             <div className={"col-sm-4"}>
                                                 <button className={"btn btn-outline-warning"}
                                                         onClick={() => {
-                                                            let orderItem = {
-                                                                restaurantId: this.props.restaurantId,
-                                                                menuItem: menuItem,
-                                                                menuItemPrice: menuItemPrice
-                                                            };
-                                                            this.props.addToOrder(orderItem);
+                                                            if(this.props.loggedIn) {
+                                                                let orderItem = {
+                                                                    restaurantId: this.props.restaurantId,
+                                                                    menuItem: menuItem,
+                                                                    menuItemPrice: menuItemPrice
+                                                                };
+                                                                this.props.addToOrder(orderItem);
+                                                            }
+                                                            else {
+                                                                history.push('/login');
+                                                            }
                                                         }}>
                                                     Add to Order
                                                 </button>

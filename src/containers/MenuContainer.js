@@ -31,21 +31,27 @@ class MenuContainerHelper extends React.PureComponent {
     render() {
         return(
             <div>
-                <ManageMenuComponent
-                    updateRestaurantMenu={this.props.updateRestaurantMenu}
-                    findRestaurantById={this.props.findRestaurantById}
-                    restaurant={this.props.restaurant}
-                    restaurantId={this.props.restaurantId}
-                    menu={this.props.menu}
-                    findMenuById={this.props.findMenuById}
-                    changeMenuName = {this.props.changeMenuName}
-                    changeMenuCuisine = {this.props.changeMenuCuisine}
-                    changeMenuItems = {this.props.changeMenuItems}
-                    name = {this.props.name}
-                    cuisineName = {this.props.cuisineName}
-                    menuItems = {this.props.menuItems}
-                    updateMenu = {this.updateMenu}
-                />
+                {
+                    this.props.loggedIn &&
+                    this.props.user.role !== 'CUSTOMER' &&
+                    <ManageMenuComponent
+                        updateRestaurantMenu={this.props.updateRestaurantMenu}
+                        findRestaurantById={this.props.findRestaurantById}
+                        restaurant={this.props.restaurant}
+                        restaurantId={this.props.restaurantId}
+                        menu={this.props.menu}
+                        findMenuById={this.props.findMenuById}
+                        changeMenuName={this.props.changeMenuName}
+                        changeMenuCuisine={this.props.changeMenuCuisine}
+                        changeMenuItems={this.props.changeMenuItems}
+                        name={this.props.name}
+                        cuisineName={this.props.cuisineName}
+                        menuItems={this.props.menuItems}
+                        updateMenu={this.updateMenu}
+                        user={this.props.user}
+                        loggedIn={this.props.loggedIn}
+                    />
+                }
                 <ViewMenuComponent
                     name = {this.props.name}
                     cuisineName = {this.props.cuisineName}
@@ -55,7 +61,9 @@ class MenuContainerHelper extends React.PureComponent {
                     findRestaurantById={this.props.findRestaurantById}
                     menu={this.props.menu}
                     addToOrder = {this.props.addToOrder}
-                    order = {this.props.order}
+                    orderItems = {this.props.orderItems}
+                    user = {this.props.user}
+                    loggedIn = {this.props.loggedIn}
                 />
             </div>
         )
@@ -70,7 +78,9 @@ const stateToPropertyMapper = (state, ownProps) => {
         name: state.MenuReducer.name,
         cuisineName: state.MenuReducer.cuisineName,
         menuItems: state.MenuReducer.menuItems,
-        order: state.OrderReducer.order
+        orderItems: state.OrderReducer.orderItems,
+        user:state.UserReducer.user,
+        loggedIn:state.UserReducer.loggedIn
     }
 }
 
