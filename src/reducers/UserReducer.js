@@ -44,10 +44,25 @@ const UserReducer = (state = initialState, action) => {
                 user: action.user,
                 loggedIn: false
             };
+        case constants.USER_ADDRESS_EDIT:
+            return{
+                ...state,
+                user:action.user
+            }
         case constants.FIND_USER_BY_USERNAME:
             return {
-                user: action.user,
-                ...state
+                ...state,
+                user: action.user
+
+            }
+
+        case constants.UPDATE_USER_PROFILE:
+            console.log(action.user.username+ " : " + action.user.phone + " : " + action.user.dateOfBirth);
+            console.log(state.user.username+ " : " + state.user.phone + " : " + state.user.dateOfBirth);
+            return{
+                ...state,
+                user:action.user,
+
             }
 
         default:

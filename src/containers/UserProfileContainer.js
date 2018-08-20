@@ -12,18 +12,19 @@ const  stateToPropertyMapper = (state) =>{
     );
 }
 
-/*const dispatcherToPropertyMapper = dispatch => {
+const dispatcherToPropertyMapper = dispatch => {
     return(
         {
-
+            updateUserProfile: (user,userId) => actions.updateUserProfile(dispatch,user,userId),
+            updateAddress:(address,addressId) => actions.updateAddress(dispatch,address,addressId)
         }
     )
-}*/
+}
 
 const UserProfileContainer =
     connect(
         stateToPropertyMapper,
-        null)
+        dispatcherToPropertyMapper)
     (UserProfileComponent)
 
 export default UserProfileContainer;

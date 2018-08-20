@@ -19,6 +19,16 @@ class RestaurantService {
         return this[_singleton]
     }
 
+    changeStatus(restId,restStatus){
+        return fetch(constants.LOCAL_RESTAURANT_URL + "/" + restId + "/status/" + restStatus,{
+            method : 'put',
+            headers:{
+                'content-type' : 'application/json'
+            },
+            credentials:"include"
+        }).then(response => response.json());
+    }
+
     createRestUser(user) {
         return this.findLocationDetailsByCity(
             user.addresses[0].city + " " +
@@ -52,6 +62,13 @@ class RestaurantService {
 
 
     }
+
+    fetchAllRestaurantDetails() {
+        return fetch(constants.LOCAL_RESTAURANT_URL)
+            .then(resp => resp.json())
+    }
+
+
 
     fetchZomatoRestaurants(name, fetchedLoc) {
         return fetch(RESTAURANT_URL + "/search?q=" + name.trim().replace(' ', '')

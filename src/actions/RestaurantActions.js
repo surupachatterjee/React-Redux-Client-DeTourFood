@@ -22,3 +22,22 @@ export const createRestUser = (dispatch, user) => {
         });
 
 }
+
+export const fetchAllRestaurantDetails = (dispatch) => {
+    restService.fetchAllRestaurantDetails()
+        .then( restaurants => {
+            dispatch({
+                type: constants.GET_ALL_RESTAURANTS,
+                restaurants: restaurants
+            });
+        })
+
+}
+
+
+
+export const changeStatus =(dispatch,restaurantId,restStatus) => {
+        restService.changeStatus(restaurantId,restStatus)
+            .then(() => fetchAllRestaurantDetails(dispatch))
+
+}
