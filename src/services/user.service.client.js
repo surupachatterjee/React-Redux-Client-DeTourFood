@@ -1,5 +1,5 @@
 import * as constants from '../constants'
-//const USER_URL ="http://localhost:4000/api/user";
+//const USER_URL ="https://detour-food-backend.herokuapp.com/api/user";
 
 
 let _singleton = Symbol();
