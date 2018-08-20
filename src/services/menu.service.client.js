@@ -42,7 +42,7 @@ class MenuService {
         })
     };
 
-    updateMenu(restaurantId, menuId, menu) {
+    updateRestaurantMenu(menu, restaurantId) {
         return fetch(MENU_URL.replace('RID', restaurantId) + '/' + menuId,
             {
                 body: JSON.stringify(menu),

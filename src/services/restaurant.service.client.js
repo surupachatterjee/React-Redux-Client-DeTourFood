@@ -46,7 +46,8 @@ class RestaurantService {
                     user = {
                         ...user,
                         addresses: [restLoc],
-                        zomatoRest: rest[0]
+                        zomatoRest: rest[0],
+                        menu: ''
                     }
 
                     return fetch(constants.LOCAL_RESTAURANT_URL, {

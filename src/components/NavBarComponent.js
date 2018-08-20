@@ -50,6 +50,10 @@ class NavBarComponent extends React.PureComponent {
                                 <li className="nav-item nav-link">
                                     <a href='#' onClick={() =>this.props.logout()}>Logout</a>
                                 </li>}
+                                {this.props.loggedIn &&
+                                <li className="nav-item nav-link">
+                                    <a href='#' onClick={() =>this.props.logout()}>Logout</a>
+                                </li>}
                             </ul>
                             <form className="form-inline my-2 my-lg-0">
                                 <input className="form-control mr-sm-2 input-lg"

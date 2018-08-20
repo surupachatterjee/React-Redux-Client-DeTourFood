@@ -3,27 +3,22 @@ import * as actions from '../actions';
 import RestaurantReducer from '../reducers/RestaurantReducer';
 import RestaurantComponent from '../components/RestaurantComponent';
 
-const stateToPropertyMapper = (state, ownProps) => {
-    let id = ownProps.match.params.restaurantId;
+const stateToPropertyMapper = (state) => {
     return {
-        restaurantId: id,
-        restaurants: state.RestaurantReducer.restaurants
+        restaurant: state.RestaurantReducer.selectedRestaurant
     }
 }
 
-
-/*
 const dispatcherToPropertyMapper = dispatch => (
-    {
-        searchRestaurants: city => actions.searchRestaurants(dispatch, city)
-    }
+{
+    findRestaurantById: id => actions.findRestaurantById(dispatch, id)
+}
 )
-*/
 
 const RestaurantContainer =
     connect(
         stateToPropertyMapper,
-        null)
+        dispatcherToPropertyMapper)
     (RestaurantComponent)
 
 export default RestaurantContainer;

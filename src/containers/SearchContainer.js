@@ -5,22 +5,23 @@ import RestaurantReducer from '../reducers/RestaurantReducer';
 
 const stateToPropertyMapper = (state) => (
     {
-        restaurants: state.RestaurantReducer.restaurants
+        restaurants: state.RestaurantReducer.searchedRestaurants
     }
 )
 
-/*
 const dispatcherToPropertyMapper = dispatch => (
     {
-        searchRestaurants: city => actions.searchRestaurants(dispatch, city)
+        findAllRestaurants: () => {
+            console.log('Circus');
+            actions.findAllRestaurants(dispatch)
+        }
     }
 )
-*/
 
 const SearchContainer =
     connect(
         stateToPropertyMapper,
-        null)
+        dispatcherToPropertyMapper)
     (SearchComponent)
 
 export default SearchContainer;
