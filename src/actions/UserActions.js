@@ -176,4 +176,6 @@ export const visitAdminPage = () => {
     history.push("/admin");
 }
 
-
+export const visitOrdersPage = () => {
+    history.push("/orders");
+}

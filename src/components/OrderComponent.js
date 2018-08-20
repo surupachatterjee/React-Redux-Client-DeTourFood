@@ -1,47 +1,71 @@
 import React from 'react';
+import history from '../History';
 
-class OrderComponent extends React.PureComponent {
+export default class OrderComponent extends React.PureComponent {
+
+    constructor(props) {
+        super(props)
+    }
 
     render() {
         return (
-            <div className={"container"}>
-                <div className={"row"}>
-                    <h1>Order</h1>
-                </div>
-                <div className={"row"}>
-                    <div className={"col-sm-6"}>
-                        Menu Items
+            <div className={"container card"}>
+                <div className={"container"}>
+                    <div className={"row"}>
+                        <h1>Current Order</h1>
                     </div>
-                    <div className={"col-sm-6"}>
-                        Amount
+                    <div className={"row"}>
+                       {this.props.order &&
+                       <h2>Status - {this.props.order.status}</h2>
+                        }
                     </div>
                 </div>
-                <div className={"row"}>
-                    {this.props.order > 0 && this.props.order.map((menuitem, index) => (
+                {this.props.order &&
+                <div className={"container"}>
+                    <ul className={'list-group'}>
+                        <div className={"row"}>
+                            <div className={"col-sm-6"}>
+                                Menu Item
+                            </div>
+                            <div className={"col-sm-6"}>
+                                Amount
+                            </div>
+                        </div>
+                        {this.props.order.orderItems &&
+                        this.props.order.orderItems.map((orderItem, index) => (
                             <li className={"list-group-item"}
                                 key={index}>
-                                <div className={"col-sm-6"}>
-                                    {order.menuitem}
+                                <div className={"row"}>
+                                    <div className={"col-sm-6"}>
+                                        {orderItem.menuItem}
+                                    </div>
+                                    <div className={"col-sm-6"}>
+                                        {orderItem.menuItemPrice}
+                                    </div>
                                 </div>
-                                <div className={"col-sm-6"}>
-                                    {order.amount}
-                                </div>
-                            </li>
-                        )
-                    )}
-                </div>
+                            </li>)
+                        )}
+                    </ul>
+                </div>}
+                <br/>
+                {this.props.order &&
                 <div className={"row"}>
-                    <h3>Billing Amount:</h3>
-                    {order.total}
-                </div>
-                <div className={"row"}>
-                    <button className={"btn btn-outline-warning"}
-                            onClick={}>
-                        <PaymentGatewayComponent/>
-                    </button>
-                </div>
-            </div>
+                    <div className={"col-6"}>
+                        <h3>Billing Amount: ${this.props.order.totalPrice}</h3>
 
+                    </div>
+                    <div className={"col-6"}>
+                        <button className={"btn btn-outline-primary"}
+                                onClick={() => {
+                                    let order = this.props.order;
+                                    order.status = 'COMPLETED'
+                                        this.props.completeOrder(order)
+                                    }}>
+                            Complete Order
+                        </button>
+                    </div>
+                </div>}
+            </div>
         )
     }
 }

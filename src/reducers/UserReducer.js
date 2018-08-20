@@ -9,6 +9,11 @@ let initialState = {
 const UserReducer = (state = initialState, action) => {
     console.log("Inside user reducer ");
     switch (action.type) {
+        case constants.FIND_ALL_USERS:
+                return {
+                    ...state,
+                    users: action.users
+            };
         case constants.CREATE_USER:
             console.log("user from action" + action.user._id);
             return {

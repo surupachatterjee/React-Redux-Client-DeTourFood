@@ -5,6 +5,50 @@ import RestaurantService from '../services/restaurant.service.client';
 const RESTAURANT_URL ="http://localhost:4000/api/restaurant";
 //import MenuService from '../services/menu.service.client';
 const MENU_URL = 'http://localhost:4000/api/menu';
+const ORDER_URL = 'http://localhost:4000/api/order';
+const USER_URL ="http://localhost:4000/api/user";
+
+export const findAllUsers = (dispatch) => {
+    return fetch (USER_URL)
+            .then((response) => {
+                console.log(response)
+                if(response!==null && response.status === 200)
+                        return response.json();
+                return null;
+            }).then(users =>
+                dispatch({
+                        type: constants.FIND_ALL_USERS,
+                    users: users
+            })
+        )
+}
+
+export const saveOrder = (dispatch, order) => {
+    return fetch(ORDER_URL,{
+            method:'PUT',
+            body:JSON.stringify(order),
+            headers:{
+                'content-type':'application/json'
+            },
+        credentials: 'include',
+        }).then((response) => {
+            console.log(response);
+            if(response!==null && response.status === 200)
+                    return response.json();
+            return null;
+        }).then((order) =>  {
+            dispatch({
+                    type: constants.SAVE_ORDER,
+                    order: order
+            })
+        }).then(() => {
+            history.push('/home');
+        })
+}
+
+
+
+
 
 export const addToOrder = (dispatch, orderItem) => {
     dispatch({
@@ -60,7 +104,7 @@ export const updateRestaurantMenu = (dispatch, menuId, menu) => {
             credentials: 'include',
             })
             .then((response) => {
-                    console.log(response)
+                    console.log(response);
                     if(response!==null && response.status === 200)
                             return response.json();
                     return null;

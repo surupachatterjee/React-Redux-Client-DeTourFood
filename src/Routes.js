@@ -9,7 +9,7 @@ import UserProfileContainer from "./containers/UserProfileContainer";
 import LoginContainer from "./containers/LoginContainer";
 import RegisterRestaurantContainer from './containers/RegisterRestaurantContainer'
 import AdminContainer from "./containers/AdminContainer";
-import MenuContainer from './containers/MenuContainer';
+import OrderContainer from './containers/OrderContainer';
 import RestaurantContainer from './containers/RestaurantContainer';
 
 export default class Routes extends Component{
@@ -27,6 +27,7 @@ export default class Routes extends Component{
                 <Route exact path={"/login"} component={LoginContainer}/>
                 <Route exact path={"/admin"} component={AdminContainer}/>
                 <Route exact path={"/restaurant/:restaurantId"} component={RestaurantContainer}/>
+                <Route exact path={"/orders"} component={OrderContainer}/>
                 {/*<Route path={"*"} component={PageNotFoundComponent}/>*/}
             </div>
         )

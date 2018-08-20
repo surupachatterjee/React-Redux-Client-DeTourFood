@@ -19,6 +19,7 @@ const dispatcherToPropertyMapper = dispatch => (
         visitProfile:() => userAction.visitProfile(),
         visitAdminPage:()=>userAction.visitAdminPage(),
         logout:() => userAction.logout(dispatch),
+        visitOrdersPage: () => userAction.visitOrdersPage(),
         searchRestaurants: city => actions.searchRestaurants(dispatch, city)
     }
 )

@@ -48,7 +48,7 @@ class NavBarComponent extends React.PureComponent {
                                 </li>}
                                 {this.props.loggedIn &&
                                 <li className="nav-item nav-link">
-                                    <a href='#' onClick={() =>this.props.logout()}>Logout</a>
+                                    <a href='#' onClick={() => this.props.visitOrdersPage()}>View Current Order</a>
                                 </li>}
                                 {this.props.loggedIn &&
                                 <li className="nav-item nav-link">
