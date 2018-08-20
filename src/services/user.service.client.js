@@ -25,6 +25,16 @@ class UserService {
         }).then(response => response.json());
     }
 
+    createUserFromAdmin(newUser){
+        return fetch(constants.ADMIN_USER_URL,{
+            method:'post',
+            body:JSON.stringify(newUser),
+            headers:{
+                'content-type':'application/json'
+            }
+        }).then(response => response.json());
+    }
+
     login(user){
         return fetch(constants.LOGIN_URL,{
             method:'post',
@@ -43,6 +53,57 @@ class UserService {
         });
     }
 
+    fetchAllUsers(){
+        return fetch(constants.USER_URL)
+            .then(resp => resp.json())
+    }
+
+
+    deleteUser(userId){
+        return fetch(constants.USER_URL + "/" + userId,{
+            method:'delete'
+        })
+    }
+
+
+    updateAddress(address,addressId){
+        return fetch(constants.USER_URL + "/address/"+ addressId,{
+            method:'put',
+            body:JSON.stringify(address),
+            headers:{
+                'content-type':'application/json'
+            },
+            credentials:"include"
+        }).then(response => response.json());
+    }
+
+
+    createUserAddress(addr, userId){
+        return fetch(constants.USER_URL + "/" + userId + "/address",{
+            method:'post',
+            body:JSON.stringify(addr),
+            headers:{
+                'content-type':'application/json'
+            },
+            credentials:'include'
+        }).then(response => response.json());
+    }
+
+    updateUserProfile(user,userId){
+        return fetch(constants.USER_URL + "/" + userId,{
+            method:'put',
+            body:JSON.stringify(user),
+            headers:{
+                'content-type':'application/json'
+            },
+            credentials:'include'
+        }).then(response =>response.json());
+    }
+
+
+    updateUserFromAdmin(user,userId){
+        return this.updateUserProfile(user,userId);
+    }
 
     /*findUserByUsername(username){
         return fetch(constants.USER_URL +"/" +username)
@@ -59,5 +120,6 @@ class UserService {
             .then(response =>response.json());
     }
 }
+
 
 export default UserService;

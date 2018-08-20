@@ -4,6 +4,13 @@ import * as constants from "../constants";
 
 class UserProfileComponent extends React.PureComponent {
 
+    /*componentDidMount(){
+        this.setState({
+            user:this.props.user,
+            loggedIn:this.props.loggedIn
+        })
+    }*/
+
     render() {
         let username;
         let firstName;
@@ -11,7 +18,13 @@ class UserProfileComponent extends React.PureComponent {
         let email;
         let phone;
         let dateOfBirth;
+        let addressName;
+        let address;
+        let city;
+        let state;
+        let country;
         let activeSection = constants.USER_PROFILE_DETAILS;
+
 
         return (
             <div>
@@ -120,16 +133,16 @@ class UserProfileComponent extends React.PureComponent {
                                 <div className="col-sm-10">
                                     <button id="updateProfile"
                                             onClick={() =>{
+
                                                 let user = this.props.user;
                                                 user = {...user,
                                                 firstName:this.firstName.value,
                                                 lastName:this.lastName.value,
                                                 email:this.email.value,
                                                 phone:this.phone.value,
-                                                dateOfBirth:this.dateOfBirth.value,
-                                                role:'CUSTOMER'};
+                                                dateOfBirth:this.dateOfBirth.value};
 
-                                               // updateUserProfile()
+                                               this.props.updateUserProfile(user,user._id)
                                                 }}
                                            className="form-control btn btn-success">
                                         Update Profile
@@ -139,13 +152,14 @@ class UserProfileComponent extends React.PureComponent {
 
                         </div>
                         }
-                        {this.activeSection === constants.USER_PROFILE_ADDRESSES &&
+                        {this.activeSection === constants.USER_PROFILE_ADDRESSES  &&
                         <div className="form-group row" id="addresses">
 
                             <div className="col-sm-10">
                                 <br/>
                                 <h4>Addresses</h4><br/>
-                                <ul className="list-group">
+                                {this.renderAddress()}
+                                {/*<ul className="list-group">
                                     <li className="list-group-item">
                                         Address 1
                                         <button className="button"><span>Edit</span></button>
@@ -158,7 +172,7 @@ class UserProfileComponent extends React.PureComponent {
                                         Address 3
                                         <button className="button"><span>Edit</span></button>
                                     </li>
-                                </ul>
+                                </ul>*/}
                             </div>
                         </div>}
 
@@ -167,6 +181,37 @@ class UserProfileComponent extends React.PureComponent {
                 </div>
             </div>
         )
+    }
+
+
+
+    renderAddress(){
+        let toggleVal = false;
+        let addresses = this.props.user.addresses.map(address => {
+            console.log(address.addressName)
+            return(
+            <li className='list-group-item' key={address._id}>
+                <input className="form-control" defaultValue={address.addressName} ref={node => this.addressName= node }/>
+                <input className="form-control" defaultValue={address.address} ref={node => this.address= node }/>
+                <input className="form-control" defaultValue={address.city} ref={node => this.city= node }/>
+                <input className="form-control" defaultValue={address.state} ref={node => this.state= node }/>
+                <input className="form-control" defaultValue={address.country } ref={node => this.country= node }/>
+                <button className="btn btn-warning" onClick={(event) => {
+                    let addr = {
+                        ...address,
+                        addressName:this.addressName.value,
+                        address:this.address.value,
+                        city:this.city.value,
+                        state:this.state.value,
+                        country:this.country.value
+                    }
+                    this.props.updateAddress(addr,address._id);
+                }}>Update Address</button>
+                {!this.props.user.role === 'RESTAURANT' &&
+                <button className="btn btn-danger float-right">Delete</button>}
+            </li>)
+        })
+        return <ul className="list-group">{addresses}</ul>;
     }
 }
 

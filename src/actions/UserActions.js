@@ -23,6 +23,117 @@ export const createUser = (dispatch, user) => {
 
 }
 
+export const createUserFromAdmin = (dispatch, newUser) => {
+    userService.createUserFromAdmin(newUser)
+        .then(users => {
+            if (users[0].username === "Username Already Exists") {
+                swal(users[0].username);
+            }
+            else {
+                console.log(users.length);
+                swal("User Created Successfully")
+                dispatch({
+                    type: constants.GET_ALL_USERS,
+                    users: users
+                });
+            }
+        });
+}
+
+export const fetchAllUsers = (dispatch) => {
+    userService.fetchAllUsers()
+        .then(users => {
+            console.log("fetched users" + users)
+            dispatch({
+                type: constants.GET_ALL_USERS,
+                users: users
+            })
+        });
+}
+
+export const deleteUser = (dispatch, userId) => {
+    userService.deleteUser(userId)
+        .then(() => {
+            swal("User deleted successfully");
+            dispatch({
+                type: constants.DELETE_USER,
+                userId: userId
+            })
+        })
+}
+
+export const updateEditableUser = (dispatch, userId) => {
+    dispatch({
+        type: constants.UPDATE_EDITABLE_USER,
+        user: userId
+    })
+}
+
+export const updateUserProfile = (dispatch, user, userId) => {
+    userService.updateUserProfile(user, userId)
+        .then(user => {
+            console.log(user.username + " : " + user.phone + " : " + user.dateOfBirth);
+            dispatch({
+                type: constants.UPDATE_USER_PROFILE,
+                user: user
+            })
+        })
+
+}
+
+
+export const updateUserFromAdmin = (dispatch, user, userId) => {
+    userService.updateUserFromAdmin(user, userId)
+        .then(user => {
+            userService.fetchAllUsers()
+                .then(users => {
+                    dispatch({
+                        type: constants.GET_ALL_USERS,
+                        users: users
+                    })
+                });
+        })
+}
+
+export const updateAddress = (dispatch, address, addressId) => {
+    userService.updateAddress(address, addressId)
+        .then(user => {
+            console.log(user.username + " : " + user.phone + " : " + user.dateOfBirth);
+            dispatch({
+                type: constants.USER_ADDRESS_EDIT,
+                user: user
+            })
+        })
+}
+
+
+export const updateAddressFromAdmin = (dispatch, address, addressId) => {
+    userService.updateAddress(address, addressId)
+        .then(user => {
+            userService.fetchAllUsers()
+                .then(users => {
+                    dispatch({
+                        type: constants.GET_ALL_USERS,
+                        users: users
+                    })
+                });
+        });
+
+}
+
+export const createUserAddress = (dispatch,addr, userId) => {
+    userService.createUserAddress(addr, userId)
+        .then(user => {
+            userService.fetchAllUsers()
+                .then(users => {
+                    dispatch({
+                        type: constants.GET_ALL_USERS,
+                        users: users
+                    })
+                });
+        });
+}
+
 export const login = (dispatch, user) => {
     userService.login(user)
         .then(user => {
