@@ -179,3 +179,7 @@ export const visitAdminPage = () => {
 export const visitOrdersPage = () => {
     history.push("/orders");
 }
+
+export const visitHome =() => {
+    history.push("/home");
+}
