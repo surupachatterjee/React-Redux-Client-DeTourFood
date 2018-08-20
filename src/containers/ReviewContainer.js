@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
+import * as userActions from '../actions/UserActions';
 import ReviewComponent from "../components/ReviewComponent";
 
 const  stateToPropertyMapper = (state) =>{
@@ -19,7 +20,8 @@ const dispatcherToPropertyMapper = dispatch => {
     return(
         {
 
-            createReview:review => actions.createReview(dispatch,review)
+            createReview:review => actions.createReview(dispatch,review),
+            fetchProfile : username => userActions.fetchProfile(dispatch,username)
         }
     )
 }

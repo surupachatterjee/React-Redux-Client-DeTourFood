@@ -20,6 +20,7 @@ export const USER_ADDRESS_EDIT ='USER_ADDRESS_EDIT';
 export const ADMIN_USER_LIST = 'ADMIN_USER_LIST';
 export const UPDATE_EDITABLE_USER = 'UPDATE_EDITABLE_USER';
 export const CREATE_REVIEW = 'CREATE_REVIEW';
+export const FETCHED_USER_PROFILE = 'FETCHED_USER_PROFILE';
 
 //URLS
 export const USER_URL ="http://localhost:4000/api/user";

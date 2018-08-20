@@ -3,7 +3,8 @@ import swal from '../../node_modules/sweetalert'
 
 let initialState = {
     user: {},
-    loggedIn: false
+    loggedIn: false,
+    fetchedUserProfile:{}
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -63,6 +64,12 @@ const UserReducer = (state = initialState, action) => {
                 ...state,
                 user:action.user,
 
+            }
+
+        case constants.FETCHED_USER_PROFILE:
+            return{
+                ...state,
+                fetchedUserProfile:action.fetchedUserProfile
             }
 
         default:

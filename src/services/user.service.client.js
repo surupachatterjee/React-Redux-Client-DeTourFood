@@ -119,6 +119,11 @@ class UserService {
         })
             .then(response =>response.json());
     }
+
+    findUserById(userId){
+        return fetch(constants.USER_URL + "/" + userId)
+            .then(response => response.json());
+    }
 }
 
 

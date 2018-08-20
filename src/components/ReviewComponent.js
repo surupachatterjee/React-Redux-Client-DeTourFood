@@ -1,4 +1,6 @@
 import React from 'react'
+import UserProfileComponent from "./UserProfileComponent";
+import UserProfileContainer from "../containers/UserProfileContainer";
 
 class  ReviewComponent extends React.Component{
 
@@ -11,7 +13,7 @@ class  ReviewComponent extends React.Component{
         let rews= this.props.restaurant.reviews.map(review =>{
             return(
                 <li className="list-group-item">
-                    <a href="#">{review.user.username}</a>
+                    <a href="#" onClick={() => this.props.fetchProfile(review.user.username)}>{review.user.username}</a>
                     <b  >User Comments : {review.userReview}</b>
                     <p>OverAll Rating : {review.overallRating}</p>
                     <p>Ambiance Rating : {review.ambRating}</p>

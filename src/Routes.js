@@ -11,6 +11,7 @@ import RegisterRestaurantContainer from './containers/RegisterRestaurantContaine
 import AdminContainer from "./containers/AdminContainer";
 import OrderContainer from './containers/OrderContainer';
 import RestaurantContainer from './containers/RestaurantContainer';
+import ProfileContainer from './containers/ProfileContainer';
 
 export default class Routes extends Component{
 
@@ -28,6 +29,7 @@ export default class Routes extends Component{
                 <Route exact path={"/admin"} component={AdminContainer}/>
                 <Route exact path={"/restaurant/:restaurantId"} component={RestaurantContainer}/>
                 <Route exact path={"/orders"} component={OrderContainer}/>
+                <Route exact path={"/profile"} component={ProfileContainer}/>
                 {/*<Route path={"*"} component={PageNotFoundComponent}/>*/}
             </div>
         )

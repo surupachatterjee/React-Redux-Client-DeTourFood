@@ -167,6 +167,17 @@ export const findUserByUsername = (dispatch, username) => {
         })
 }
 
+export const fetchProfile =(dispatch,username) => {
+    userService.findUserByUsername(username)
+        .then(userProfile => {
+            dispatch({
+                type:constants.FETCHED_USER_PROFILE,
+                fetchedUserProfile:userProfile
+            })
+            history.push("/profile");
+        })
+}
+
 export const visitProfile = () => {
     history.push("/userProfile");
 
