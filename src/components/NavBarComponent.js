@@ -21,7 +21,8 @@ class NavBarComponent extends React.PureComponent {
                             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                                 <li className="nav-item active">
                                     <a className="nav-link"
-                                       href="/home">
+                                       onClick={() => this.props.visitHome()}
+                                       href="#">
                                         Home
                                         <span className="sr-only">
                                             (current)
