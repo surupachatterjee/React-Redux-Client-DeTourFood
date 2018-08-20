@@ -440,8 +440,6 @@ class AdminComponent extends React.PureComponent {
         });
         return (<ul className="list-group">{restInact}</ul>);
     }
-
-
 }
 
 export default AdminComponent;

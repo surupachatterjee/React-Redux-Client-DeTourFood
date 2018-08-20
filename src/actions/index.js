@@ -8,6 +8,8 @@ const MENU_URL = 'http://localhost:4000/api/menu';
 const ORDER_URL = 'http://localhost:4000/api/order';
 const USER_URL ="http://localhost:4000/api/user";
 
+let restService = RestaurantService.instance;
+
 export const findAllUsers = (dispatch) => {
     return fetch (USER_URL)
             .then((response) => {
@@ -193,3 +195,11 @@ export const updateMenu = (dispatch,menu) => dispatch({
     type: constants.UPDATE_MENU,
     menu: menu
 });
+
+export const createReview = (dispatch,review) => {
+    restService.createReview(review)
+        .then(review => {
+            findRestaurantById(dispatch,review.restaurant)
+
+        })
+}

@@ -29,6 +29,8 @@ const RestaurantReducer = (state=initialState, action) => {
                 selectedRestaurant: action.restaurant
             };
 
+
+
         default: return state
 
     }

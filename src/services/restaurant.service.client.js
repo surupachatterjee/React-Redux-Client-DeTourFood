@@ -19,6 +19,19 @@ class RestaurantService {
         return this[_singleton]
     }
 
+    createReview(review){
+        return fetch(constants.REVIEW_URL,{
+            method:'post',
+            body:JSON.stringify(review),
+            headers:{
+                'content-type':'application/json'
+            },
+            credentials:'include'
+        }).then(response => response.json());
+    }
+
+
+
     changeStatus(restId,restStatus){
         return fetch(constants.LOCAL_RESTAURANT_URL + "/" + restId + "/status/" + restStatus,{
             method : 'put',

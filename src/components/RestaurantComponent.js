@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import MenuContainer from "../containers/MenuContainer";
 import "../styles/RestaurantComponent.css";
+import ReviewContainer from "../containers/ReviewContainer";
 
 class RestaurantComponent extends React.PureComponent {
 
@@ -60,6 +61,7 @@ class RestaurantComponent extends React.PureComponent {
                             </div>
                         </div>
                         <MenuContainer restaurantId={restaurant._id}/>
+                        <ReviewContainer/>
                     </div>
                 }
             </div>
