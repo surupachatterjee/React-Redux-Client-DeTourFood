@@ -69,7 +69,7 @@ export default class OrderComponent extends React.PureComponent {
                         </button>
                     </div>
                 </div>}
-                {
+                { this.props.loggedIn && this.props.user.role !== 'CUSTOMER' &&
                     <div className={"container card"}>
                     <div className={"row"}>
                         <div className={"col-sm-6"}>
@@ -94,8 +94,6 @@ export default class OrderComponent extends React.PureComponent {
                                 this.props.orders.map((order) => {
                                     return (order.orderItems.map((orderItem, index) => {
                                         if (String(this.props.user.restaurants[0]._id) === String(orderItem.restaurantId)) {
-                                            alert(JSON.stringify(orderItem));
-                                            console.log(orderItem.menuItem);
                                             return (<li className={"list-group-item"} key={index}>
                                                 <div className={"row"}>
                                                     <div className={"col-sm-6"}>
