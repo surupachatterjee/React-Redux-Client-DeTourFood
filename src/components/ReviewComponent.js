@@ -12,10 +12,12 @@ class  ReviewComponent extends React.Component{
             return(
                 <li className="list-group-item">
                     <a href="#">{review.user.username}</a>
-                    <b  >User Comments : {review.userReview}</b>
-                    <p>OverAll Rating : {review.overallRating}</p>
-                    <p>Ambiance Rating : {review.ambRating}</p>
-                    <p>service Rating : {review.serviceRating}</p>
+                    <br/><br/>
+                    <b>User Comments : {review.userReview}</b>
+                    <br/><br/>
+                    <p>OverAll Rating : {review.overAllRating}</p>
+                    <p>Ambience Rating : {review.ambRating}</p>
+                    <p>Service Rating : {review.serviceRating}</p>
                     <p>Food Rating : {review.foodRating}</p>
                 </li>
             )
@@ -75,7 +77,6 @@ class  ReviewComponent extends React.Component{
 
         return(
             <div>
-                <h2>Review here {this.props.user.username} - {this.props.restaurant._id}</h2>
                 {/*<ul className="list-group">
                     <li className="list-group-item">{this.props.restaurant.name}</li>
                     <li className="list-group-item">Review 2</li>
