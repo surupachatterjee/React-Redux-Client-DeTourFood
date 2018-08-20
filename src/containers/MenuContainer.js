@@ -64,6 +64,7 @@ class MenuContainerHelper extends React.PureComponent {
                     orderItems = {this.props.orderItems}
                     user = {this.props.user}
                     loggedIn = {this.props.loggedIn}
+                    saveOrder = {this.props.saveOrder}
                 />
             </div>
         )
@@ -80,7 +81,7 @@ const stateToPropertyMapper = (state, ownProps) => {
         menuItems: state.MenuReducer.menuItems,
         orderItems: state.OrderReducer.orderItems,
         user:state.UserReducer.user,
-        loggedIn:state.UserReducer.loggedIn
+        loggedIn:state.UserReducer.loggedIn,
     }
 }
 
@@ -93,7 +94,8 @@ const dispatcherToPropertyMapper = dispatch => {
         changeMenuName: (name) => actions.changeMenuName(dispatch, name),
         changeMenuCuisine: (cuisineName) => actions.changeMenuCuisine(dispatch, cuisineName),
         changeMenuItems: (menuItems) => actions.changeMenuItems(dispatch, menuItems),
-        addToOrder: (orderItem) => actions.addToOrder(dispatch, orderItem)
+        addToOrder: (orderItem) => actions.addToOrder(dispatch, orderItem),
+        saveOrder: (order) => actions.saveOrder(dispatch, order)
     }
 }
 

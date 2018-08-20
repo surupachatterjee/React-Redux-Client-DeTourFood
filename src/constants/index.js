@@ -8,6 +8,7 @@ export const USER_LOGIN ='LOGIN';
 export const USER_LOGOUT='LOGOUT';
 export const FIND_USER_BY_USERNAME='FIND_USER_BY_USERNAME';
 export const ADMIN_RESTAURANT_VIEW='ADMIN_RESTAURANT_VIEW';
+export const FIND_ALL_USERS = 'FIND_ALL_USERS';
 
 //URLS
 export const USER_URL ="http://localhost:4000/api/user";
@@ -30,3 +31,4 @@ export const CHANGE_MENU_NAME = 'CHANGE_MENU_NAME';
 export const CHANGE_MENU_CUISINE = 'CHANGE_MENU_CUISINE';
 export const CHANGE_MENU_ITEMS = 'CHANGE_MENU_ITEMS';
 export const ADD_TO_ORDER = 'ADD_TO_ORDER';
+export const SAVE_ORDER = 'SAVE_ORDER';

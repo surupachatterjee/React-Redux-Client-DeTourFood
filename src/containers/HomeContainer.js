@@ -5,12 +5,14 @@ import * as actions from '../actions';
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
-        findAllRestaurants: () => actions.findAllRestaurants(dispatch)
+        findAllRestaurants: () => actions.findAllRestaurants(dispatch),
+        findAllUsers: () => actions.findAllUsers(dispatch)
     }
 }
 const stateToPropertyMapper = (state, ownProps) => {
     return {
-
+        restaurants: state.RestaurantReducer.restaurants,
+        users: state.UserReducer.users
     }
 }
 

@@ -15,10 +15,19 @@ a{
     margin: 10px;
 }
 .registerBox{
-    background-color: lightgrey;
-    width: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 40px;
     border: 3px solid grey;
     padding: 50px;
     margin: 10%;
-
+    padding: 10px;
+    margin: 5%;
+    height: 80px;
+}
+.displayBox{
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 20px;
+    border: 3px solid grey;
+    padding: 10px;
+    margin: 5%;
 }
