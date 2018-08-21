@@ -1,4 +1,4 @@
-const MENU_URL = 'http://localhost:4000/api/restaurant/RID/menu';
+const MENU_URL = 'https://detour-food-backend.herokuapp.com/api/restaurant/RID/menu';
 
 let _singleton = Symbol();
 
