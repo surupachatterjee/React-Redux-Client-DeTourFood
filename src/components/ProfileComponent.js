@@ -40,7 +40,7 @@ class ProfileComponent extends React.Component{
 
     render(){
         return(<div>
-            <h2>Profile Component - {this.props.fetchedUserProfile.username }</h2>
+            <h2></h2>
             <ul className="list-group col col-sm-6">
 
                     <li className="list-group-item"> Username: {this.props.fetchedUserProfile.username }</li>

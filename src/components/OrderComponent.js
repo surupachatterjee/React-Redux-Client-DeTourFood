@@ -83,10 +83,10 @@ export default class OrderComponent extends React.PureComponent {
                             <ul className={'list-group'}>
                                 <li className={"list-group-item"}>
                                     <div className={"row"}>
-                                        <div className={"col-sm-6"}>
+                                        <div className={"col-sm-4"}>
                                             Menu Item
                                         </div>
-                                        <div className={"col-sm-6"}>
+                                        <div className={"col-sm-4"}>
                                             Menu Item Price
                                         </div>
                                     </div>
@@ -97,16 +97,31 @@ export default class OrderComponent extends React.PureComponent {
                                         if (String(this.props.user.restaurants[0]._id) === String(orderItem.restaurantId)) {
                                             return (<li className={"list-group-item"} key={index}>
                                                 <div className={"row"}>
-                                                    <div className={"col-sm-6"}>
+                                                    <div className={"col-sm-4"}>
                                                         {orderItem.menuItem}
                                                     </div>
-                                                    <div className={"col-sm-6"}>
+                                                    <div className={"col-sm-4"}>
                                                         {orderItem.menuItemPrice}
+                                                    </div>
+                                                    <div className={"col-sm-4"}>
+                                                        <button className={"btn btn-outline-success"}
+                                                                onClick={() => {
+                                                                    let newOrderItems = order.orderItems.map(orderI => {
+                                                                        if (orderI._id === orderItem._id) {
+                                                                            orderI.menuItemStatus = 'DELIVERED'
+                                                                        }
+                                                                        return orderI
+                                                                    })
+                                                                    let newOrder = Object.assign({},order);
+                                                                    newOrder.orderItems = newOrderItems;
+                                                                    this.props.saveOrder(newOrder);
+                                                                }}>
+                                                            {orderItem.menuItemStatus}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </li>);
                                         }
-
                                     }))}
                                 )}
                             </ul>

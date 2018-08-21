@@ -95,7 +95,8 @@ const dispatcherToPropertyMapper = dispatch => {
         changeMenuCuisine: (cuisineName) => actions.changeMenuCuisine(dispatch, cuisineName),
         changeMenuItems: (menuItems) => actions.changeMenuItems(dispatch, menuItems),
         addToOrder: (orderItem) => actions.addToOrder(dispatch, orderItem),
-        saveOrder: (order) => actions.saveOrder(dispatch, order)
+        saveOrder: (order) => actions.saveOrder(dispatch, order),
+
     }
 }
 

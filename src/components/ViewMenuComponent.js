@@ -101,7 +101,8 @@ class ViewMenuComponent extends React.PureComponent {
                                                                             itemId: this.guidGenerator(),
                                                                             restaurantId: this.props.restaurantId,
                                                                             menuItem: menuItem,
-                                                                            menuItemPrice: menuItemPrice
+                                                                            menuItemPrice: menuItemPrice,
+                                                                            menuItemStatus: 'NOT DELIVERED'
                                                                         };
                                                                         this.props.addToOrder(orderItem);
                                                                     }

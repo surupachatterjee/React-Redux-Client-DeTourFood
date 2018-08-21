@@ -15,7 +15,8 @@ const stateToPropertyMapper = (state) => (
 const dispatcherToPropertyMapper = dispatch => (
     {
         completeOrder: (order) => actions.saveOrder(dispatch, order),
-        findAllOrders: (orders) => actions.findAllOrders(dispatch, orders)
+        findAllOrders: (orders) => actions.findAllOrders(dispatch, orders),
+        saveOrder: (order) => actions.saveOrder(dispatch, order)
     }
 )
 

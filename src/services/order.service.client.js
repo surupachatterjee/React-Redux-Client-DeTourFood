@@ -1,7 +1,7 @@
 import * as constants from "../constants";
 import UserService from "./user.service.client";
 
-const ORDER_URL = 'https://detour-food-backend.herokuapp.com/api/order';
+const ORDER_URL = 'http://localhost:4000/api/order';
 
 let _singleton = Symbol();
 
