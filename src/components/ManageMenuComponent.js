@@ -1,5 +1,6 @@
 import React from 'react';
 import swal from "sweetalert";
+import '../styles/ManageMenuComponent.css';
 
 class ManageMenuComponent extends React.PureComponent {
 
@@ -30,7 +31,7 @@ class ManageMenuComponent extends React.PureComponent {
                         <div className="col-sm-1"/>
                         <div className="container-fluid col-sm-10">
                             <div className="form-group row">
-                                <label htmlFor="menuName" className="col-sm-2 col-form-label">
+                                <label htmlFor="menuName" className="col-sm-2 col-form-label blk">
                                     Menu Name
                                 </label>
                                 <div className="col-sm-10">
@@ -44,7 +45,7 @@ class ManageMenuComponent extends React.PureComponent {
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <label htmlFor="cuisineName" className="col-sm-2 col-form-label">
+                                <label htmlFor="cuisineName" className="col-sm-2 col-form-label blk">
                                     Cuisine
                                 </label>
                                 <div className="col-sm-10">
@@ -58,7 +59,7 @@ class ManageMenuComponent extends React.PureComponent {
                                 </div>
                             </div>
                             <div className={"row form-group"}>
-                                <label htmlFor="menuItems" className="col-sm-2 col-form-label">
+                                <label htmlFor="menuItems" className="col-sm-2 col-form-label blk">
                                     Menu Items
                                 </label>
                                 <div className={"col-sm-10"}>
