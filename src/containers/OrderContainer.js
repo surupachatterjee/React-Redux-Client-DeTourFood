@@ -5,13 +5,17 @@ import OrderComponent from '../components/OrderComponent'
 const stateToPropertyMapper = (state) => (
     {
         order: state.OrderReducer.order,
-        restaurants: state.RestaurantReducer.restaurants
+        restaurants: state.RestaurantReducer.restaurants,
+        user: state.UserReducer.user,
+        loggedIn: state.UserReducer.loggedIn,
+        orders: state.OrderReducer.orders
     }
 )
 
 const dispatcherToPropertyMapper = dispatch => (
     {
-        completeOrder: (order) => actions.saveOrder(dispatch, order)
+        completeOrder: (order) => actions.saveOrder(dispatch, order),
+        findAllOrders: (orders) => actions.findAllOrders(dispatch, orders)
     }
 )
 

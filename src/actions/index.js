@@ -2,18 +2,34 @@ import * as constants from "../constants";
 import history from '../History';
 import UserService from "../services/user.service.client";
 import RestaurantService from '../services/restaurant.service.client';
-const RESTAURANT_URL ="http://localhost:4000/api/restaurant";
+const RESTAURANT_URL ="https://detour-food-backend.herokuapp.com/api/restaurant";
 //import MenuService from '../services/menu.service.client';
-const MENU_URL = 'http://localhost:4000/api/menu';
-const ORDER_URL = 'http://localhost:4000/api/order';
-const USER_URL ="http://localhost:4000/api/user";
+const MENU_URL = 'https://detour-food-backend.herokuapp.com/api/menu';
+const ORDER_URL = 'https://detour-food-backend.herokuapp.com/api/order';
+const USER_URL ="https://detour-food-backend.herokuapp.com/api/user";
+
+export const findAllOrders = (dispatch) => {
+    return fetch (ORDER_URL)
+        .then((response) => {
+            console.log(response)
+            if(response!==null && response.status === 200)
+                return response.json();
+            return null;
+        }).then(orders =>
+            dispatch({
+                type: constants.FIND_ALL_ORDERS,
+                orders: orders
+            })
+        )
+}
+
 
 let restService = RestaurantService.instance;
 
 export const findAllUsers = (dispatch) => {
     return fetch (USER_URL)
             .then((response) => {
-                console.log(response)
+                console.log(response);
                 if(response!==null && response.status === 200)
                         return response.json();
                 return null;
@@ -144,7 +160,7 @@ export const findRestaurantById = (dispatch, id) => {
 export const findAllRestaurants = (dispatch) => {
     return fetch (RESTAURANT_URL)
         .then((response) => {
-            console.log(response)
+            console.log(response);
             if(response!==null && response.status === 200)
                 return response.json();
             return null;

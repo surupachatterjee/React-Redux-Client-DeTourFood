@@ -23,12 +23,12 @@ export const CREATE_REVIEW = 'CREATE_REVIEW';
 export const FETCHED_USER_PROFILE = 'FETCHED_USER_PROFILE';
 
 //URLS
-export const USER_URL ="http://localhost:4000/api/user";
-export const LOGIN_URL ="http://localhost:4000/api/login";
-export const LOGOUT_URL ="http://localhost:4000/api/logout";
-export const LOCAL_RESTAURANT_URL ="http://localhost:4000/api/restaurant";
-export const ADMIN_USER_URL = "http://localhost:4000/api/admin/user";
-export const REVIEW_URL = "http://localhost:4000/api/review";
+export const USER_URL ="https://detour-food-backend.herokuapp.com/api/user";
+export const LOGIN_URL ="https://detour-food-backend.herokuapp.com/api/login";
+export const LOGOUT_URL ="https://detour-food-backend.herokuapp.com/api/logout";
+export const LOCAL_RESTAURANT_URL ="https://detour-food-backend.herokuapp.com/api/restaurant";
+export const ADMIN_USER_URL = "https://detour-food-backend.herokuapp.com/api/admin/user";
+export const REVIEW_URL = "https://detour-food-backend.herokuapp.com/api/review";
 
 
 
@@ -50,3 +50,4 @@ export const SAVE_ORDER = 'SAVE_ORDER';
 export const REST_STATUS_PA = 'PENDING_APPROVAL';
 export const REST_STATUS_ACTIVE = 'ACTIVE';
 export const REST_STATUS_INACTIVE = 'INACTIVE';
+export const FIND_ALL_ORDERS = 'FIND_ALL_ORDERS';
