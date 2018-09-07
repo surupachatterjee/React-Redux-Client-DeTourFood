@@ -4,9 +4,9 @@ import UserService from "../services/user.service.client";
 import RestaurantService from '../services/restaurant.service.client';
 const RESTAURANT_URL ="https://detour-food-backend.herokuapp.com/api/restaurant";
 //import MenuService from '../services/menu.service.client';
-const MENU_URL = 'https://detour-food-backend.herokuapp.com/api/menu';
-const ORDER_URL = 'https://detour-food-backend.herokuapp.com/api/order';
-const USER_URL ="https://detour-food-backend.herokuapp.com/api/user";
+const MENU_URL = 'https://detour-food-backend-stc.herokuapp.com/api/menu';
+const ORDER_URL = 'https://detour-food-backend-stc.herokuapp.com/api/order';
+const USER_URL ="https://detour-food-backend-stc.herokuapp.com/api/user";
 
 export const findAllOrders = (dispatch) => {
     return fetch (ORDER_URL)
